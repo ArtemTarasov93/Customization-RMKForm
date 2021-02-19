@@ -16,7 +16,7 @@ using System.Collections;
 using System.ServiceProcess;
 using System.Management;
 
-namespace WindowsFormsApplication1
+namespace CustomizationRMKForm
 {
     public partial class CustomizationRMKForm : Form
     {

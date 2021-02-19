@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace CustomizationRMKForm
 {
     partial class CustomizationRMKForm
     {
@@ -60,7 +60,7 @@
             // 
             // PrintStringOut
             // 
-            this.PrintStringOut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.PrintStringOut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PrintStringOut.Font = new System.Drawing.Font("Lucida Fax", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.PrintStringOut.Location = new System.Drawing.Point(5, 127);
@@ -148,7 +148,7 @@
             // 
             // tbResult
             // 
-            this.tbResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.tbResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbResult.Location = new System.Drawing.Point(5, 274);
             this.tbResult.Name = "tbResult";
