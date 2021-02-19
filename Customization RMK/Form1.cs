@@ -61,7 +61,7 @@ namespace WindowsFormsApplication1
             Driver.Timeout = 1000;
             Driver.IPAddress = "192.168.137.111";
             Driver.GetECRStatus();
-            MainButtonResult();
+            CollectionDataResult();
             Licence.Enabled = true;
             if (Driver.ECRBuild != 19018)
             {
@@ -93,7 +93,7 @@ namespace WindowsFormsApplication1
                 tbResult.Text = string.Format("{0}", "Установлена актуальная прошивка");
             }
         }
-        private void MainButtonResult() //Функция текстового описания режимов
+        private void CollectionDataResult() //Функция текстового описания режимов
         {
             switch (Driver.ECRMode)
             {
@@ -292,9 +292,7 @@ namespace WindowsFormsApplication1
                         Ofdconnect.WaitForStatus(ServiceControllerStatus.Running, timeout);
                     }
                     Thread.Sleep(2000);
-                    Driver.FNGetInfoExchangeStatus();
-                    PrintStringOut.Text = string.Format("{0} {1}", "Чеков не передано:", Driver.MessageCount);
-                    
+                    CollectionDataResult();
                 }
                 catch (Exception)
                 {
