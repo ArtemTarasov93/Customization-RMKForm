@@ -42,6 +42,7 @@
             this.UpdateFirmwareTimer = new System.Windows.Forms.Timer(this.components);
             this.TerminalUpdate = new System.Windows.Forms.Timer(this.components);
             this.OfdConnect = new System.Windows.Forms.Button();
+            this.StatickIP = new System.Windows.Forms.Button();
             this.TabControl.SuspendLayout();
             this.KKMPage.SuspendLayout();
             this.SuspendLayout();
@@ -116,6 +117,7 @@
             // 
             // KKMPage
             // 
+            this.KKMPage.Controls.Add(this.StatickIP);
             this.KKMPage.Controls.Add(this.OfdConnect);
             this.KKMPage.Controls.Add(this.FirmwareKey);
             this.KKMPage.Controls.Add(this.PrintStringOut);
@@ -180,6 +182,18 @@
             this.OfdConnect.UseVisualStyleBackColor = false;
             this.OfdConnect.Click += new System.EventHandler(this.OfdConnect_Click);
             // 
+            // StatickIP
+            // 
+            this.StatickIP.BackColor = System.Drawing.Color.Transparent;
+            this.StatickIP.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.StatickIP.Location = new System.Drawing.Point(5, 93);
+            this.StatickIP.Name = "StatickIP";
+            this.StatickIP.Size = new System.Drawing.Size(149, 23);
+            this.StatickIP.TabIndex = 14;
+            this.StatickIP.Text = "Установить IP Адрес";
+            this.StatickIP.UseVisualStyleBackColor = false;
+            this.StatickIP.Click += new System.EventHandler(this.StatickIP_Click);
+            // 
             // CustomizationRMKForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -212,6 +226,7 @@
         private System.Windows.Forms.Timer TerminalUpdate;
         private System.Windows.Forms.Button FirmwareKey;
         private System.Windows.Forms.Button OfdConnect;
+        private System.Windows.Forms.Button StatickIP;
     }
 }
 

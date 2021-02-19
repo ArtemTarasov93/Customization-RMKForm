@@ -14,6 +14,7 @@ using System.Diagnostics;
 using System.IO.Ports;
 using System.Collections;
 using System.ServiceProcess;
+using System.Management;
 
 namespace WindowsFormsApplication1
 {
@@ -305,5 +306,21 @@ namespace WindowsFormsApplication1
                 tbResult.Text = string.Format("{0}", "Нет доступа к шаре");
             }
         }
+        private void StatickIP_Click(object sender, EventArgs e) // Кнопка "Установить IP Адрес"
+        {
+            Process StatickIP = new Process();
+            StatickIP.StartInfo.Arguments = @"$var1 = Get-NetAdapter -interfaceDescription *'Remote NDIS based Internet Sharing Device'* | select -expand ifIndex" + 
+                                    "\r\n" + "New-NetIPAddress -interfaceIndex $var1 -IPAddress 192.168.137.1 -PrefixLength 24";
+            StatickIP.StartInfo.FileName = @"powershell";
+            try
+            {
+                StatickIP.Start();
+            }
+            catch
+            {
+                tbResult.Text = string.Format("{0}", "Ошибка запуска скрипта PS");
+            }
+        }
     }
 }
+
