@@ -44,6 +44,7 @@
             this.UpdateFirmwareTimer = new System.Windows.Forms.Timer(this.components);
             this.Regsvr = new System.Windows.Forms.Button();
             this.TerminalResult = new System.Windows.Forms.TextBox();
+            this.VerifyResults = new System.Windows.Forms.Button();
             this.TabControl.SuspendLayout();
             this.KKMPage.SuspendLayout();
             this.TerminalPage.SuspendLayout();
@@ -183,6 +184,7 @@
             // 
             // TerminalPage
             // 
+            this.TerminalPage.Controls.Add(this.VerifyResults);
             this.TerminalPage.Controls.Add(this.TerminalResult);
             this.TerminalPage.Controls.Add(this.Regsvr);
             this.TerminalPage.Location = new System.Drawing.Point(4, 22);
@@ -220,6 +222,18 @@
             this.TerminalResult.Size = new System.Drawing.Size(322, 142);
             this.TerminalResult.TabIndex = 16;
             // 
+            // VerifyResults
+            // 
+            this.VerifyResults.BackColor = System.Drawing.Color.Transparent;
+            this.VerifyResults.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.VerifyResults.Location = new System.Drawing.Point(179, 6);
+            this.VerifyResults.Name = "VerifyResults";
+            this.VerifyResults.Size = new System.Drawing.Size(149, 23);
+            this.VerifyResults.TabIndex = 17;
+            this.VerifyResults.Text = "Сверка итогов";
+            this.VerifyResults.UseVisualStyleBackColor = false;
+            this.VerifyResults.Click += new System.EventHandler(this.VerifyResults_Click);
+            // 
             // CustomizationRMKForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -256,6 +270,7 @@
         private System.Windows.Forms.Button StatickIP;
         private System.Windows.Forms.TextBox TerminalResult;
         private System.Windows.Forms.Button Regsvr;
+        private System.Windows.Forms.Button VerifyResults;
     }
 }
 

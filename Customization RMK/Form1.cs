@@ -349,6 +349,21 @@ namespace CustomizationRMKForm
                 TerminalResult.Text = string.Format("{0}", "Нет библиотеки на 3 параметра в папке sc552");
             }
         }
+
+        private void VerifyResults_Click(object sender, EventArgs e) // Кнопка "Сверка итогов"
+        {
+            Process VerifyResultsProcess = new Process();
+            VerifyResultsProcess.StartInfo.Arguments = "7";
+            VerifyResultsProcess.StartInfo.FileName = @"C:\sc552\LoadParm.exe";
+            try
+            {
+                VerifyResultsProcess.Start();
+            }
+            catch
+            {
+                TerminalResult.Text = string.Format("{0}", "Ошибка запуска сверки итогов");
+            }
+        }
     }
 }
 
