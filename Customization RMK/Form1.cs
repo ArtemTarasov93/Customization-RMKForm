@@ -321,6 +321,34 @@ namespace CustomizationRMKForm
                 tbResult.Text = string.Format("{0}", "Ошибка запуска скрипта PS");
             }
         }
+
+        private void Regsvr_Click(object sender, EventArgs e) // Кнопка "Регистрация библиотек"
+        {
+            if (Directory.Exists(@"C:\sc552") == false)
+            {
+                TerminalResult.Text = string.Format("{0}", @"Нет папки C:\sc552");
+                return;
+            }
+            if (File.Exists(@"C:\sc552\1C\3_par\SBRFCOM.dll"))
+            {
+                File.Copy(@"C:\sc552\1C\3_par\SBRFCOM.dll", @"C:\sc552\SBRFCOM.dll", true);
+                Process RegsvrProcess = new Process();
+                RegsvrProcess.StartInfo.Arguments = @"C:\sc552\SBRFCOM.dll";
+                RegsvrProcess.StartInfo.FileName = @"Regsvr32";
+                try
+                {
+                    RegsvrProcess.Start();
+                }
+                catch
+                {
+                    TerminalResult.Text = string.Format("{0}", "Ошибка регистрации библиотек");
+                }
+            }
+            else
+            {
+                TerminalResult.Text = string.Format("{0}", "Нет библиотеки на 3 параметра в папке sc552");
+            }
+        }
     }
 }
 
