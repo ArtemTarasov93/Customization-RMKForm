@@ -292,8 +292,7 @@ namespace WindowsFormsApplication1
                         Ofdconnect.Start();
                         Ofdconnect.WaitForStatus(ServiceControllerStatus.Running, timeout);
                     }
-                    Thread.Sleep(2000);
-                    CollectionDataResult();
+                    tbResult.Text = string.Format("{0}", "Служба перезапущена");
                 }
                 catch (Exception)
                 {
