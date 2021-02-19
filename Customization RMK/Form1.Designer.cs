@@ -41,6 +41,7 @@
             this.TerminalPage = new System.Windows.Forms.TabPage();
             this.UpdateFirmwareTimer = new System.Windows.Forms.Timer(this.components);
             this.TerminalUpdate = new System.Windows.Forms.Timer(this.components);
+            this.OfdConnect = new System.Windows.Forms.Button();
             this.TabControl.SuspendLayout();
             this.KKMPage.SuspendLayout();
             this.SuspendLayout();
@@ -115,6 +116,7 @@
             // 
             // KKMPage
             // 
+            this.KKMPage.Controls.Add(this.OfdConnect);
             this.KKMPage.Controls.Add(this.FirmwareKey);
             this.KKMPage.Controls.Add(this.PrintStringOut);
             this.KKMPage.Controls.Add(this.ShowProperties);
@@ -166,6 +168,18 @@
             this.UpdateFirmwareTimer.Interval = 200;
             this.UpdateFirmwareTimer.Tick += new System.EventHandler(this.UpdateFirmwareTimer_Tick);
             // 
+            // OfdConnect
+            // 
+            this.OfdConnect.BackColor = System.Drawing.Color.Transparent;
+            this.OfdConnect.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.OfdConnect.Location = new System.Drawing.Point(178, 93);
+            this.OfdConnect.Name = "OfdConnect";
+            this.OfdConnect.Size = new System.Drawing.Size(149, 23);
+            this.OfdConnect.TabIndex = 13;
+            this.OfdConnect.Text = "Настрока связи с ОФД";
+            this.OfdConnect.UseVisualStyleBackColor = false;
+            this.OfdConnect.Click += new System.EventHandler(this.OfdConnect_Click);
+            // 
             // CustomizationRMKForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -197,6 +211,7 @@
         private System.Windows.Forms.Timer UpdateFirmwareTimer;
         private System.Windows.Forms.Timer TerminalUpdate;
         private System.Windows.Forms.Button FirmwareKey;
+        private System.Windows.Forms.Button OfdConnect;
     }
 }
 

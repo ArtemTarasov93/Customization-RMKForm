@@ -13,6 +13,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.IO.Ports;
 using System.Collections;
+using System.ServiceProcess;
 
 namespace WindowsFormsApplication1
 {
@@ -23,6 +24,8 @@ namespace WindowsFormsApplication1
         const string PatchFirmwareKey = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM\firmware\upd_app_key.bin";
         const string NewPatchFirmwareKey = @"C:\Files\KKM\upd_app_key.bin";
         const string DirNewPatch = @"C:\Files\KKM";
+        const string OfdKKTProfiles = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM\ofd\KKTProfiles.ini";
+        const string OfdSettings = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM\ofd\Settings.ini";
         string SerialNumber;
         string Organization = "";
         string Adress = "";
@@ -249,6 +252,64 @@ namespace WindowsFormsApplication1
             else
             {
                 tbResult.Text = string.Format("{0}", "Лицензии на ККМ не существует");
+            }
+        }
+
+        private void OfdConnect_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(OfdKKTProfiles))
+            {
+                if (Directory.Exists(@"C:\Program Files (x86)\SHTRIH-M\DrvFR 4.14\Bin\OFDConnect") == false)
+                {
+                    tbResult.Text = string.Format("{0}", "Не установлен тест драйвера 4.14");
+                    return;
+                }
+                if (Directory.Exists(DirNewPatch) == false)
+                {
+                    Directory.CreateDirectory(DirNewPatch);
+                }
+                try
+                {
+                    File.Copy(OfdKKTProfiles, @"C:\Program Files (x86)\SHTRIH-M\DrvFR 4.14\Bin\OFDConnect\KKTProfiles.ini", true);
+                    File.Copy(OfdSettings, @"C:\Program Files (x86)\SHTRIH-M\DrvFR 4.14\Bin\OFDConnect\Settings.ini", true);
+                }
+                catch (Exception)
+                {
+                    tbResult.Text = string.Format("{0}", "Не достаточно прав доступа");
+                }
+                try
+                {
+                    ServiceController Ofdconnect = new ServiceController("ofdconnect");
+                    TimeSpan timeout = TimeSpan.FromMinutes(1);
+                    if (Ofdconnect.Status != ServiceControllerStatus.Stopped)
+                    {
+                        tbResult.Text = string.Format("{0}", "Перезапуск службы. Запускаем службу...");
+                        // Останавливаем службу
+                        Ofdconnect.Stop();
+                        Ofdconnect.WaitForStatus(ServiceControllerStatus.Stopped, timeout);
+                        tbResult.Text = string.Format("{0}", "Служба была успешно остановлена!");
+                    }
+                    if (Ofdconnect.Status != ServiceControllerStatus.Running)
+                    {
+                        tbResult.Text = string.Format("{0}", "Перезапуск службы. Запускаем службу...");
+                        // Запускаем службу
+                        Ofdconnect.Start();
+                        Ofdconnect.WaitForStatus(ServiceControllerStatus.Running, timeout);
+                        tbResult.Text = string.Format("{0}", "Служба была успешно запущена!");
+                    }
+                    Thread.Sleep(2000);
+                    Driver.FNGetInfoExchangeStatus();
+                    PrintStringOut.Text = string.Format("{0} {1}", "Чеков не передано:", Driver.MessageCount);
+                    
+                }
+                catch (Exception)
+                {
+                    tbResult.Text = string.Format("{0}", "Ошибка при перезапуске службы");
+                }
+            }
+            else
+            {
+                tbResult.Text = string.Format("{0}", "Нет доступа к шаре");
             }
         }
     }
