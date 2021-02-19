@@ -7,7 +7,7 @@
     <ProjectGuid>{F1CD30F5-C733-40F3-84BF-3E148E76287F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Customization_RMK</RootNamespace>
-    <AssemblyName>Customization RMK</AssemblyName>
+    <AssemblyName>Настройка РМК</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -73,6 +73,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
