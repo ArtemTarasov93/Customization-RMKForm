@@ -255,7 +255,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void OfdConnect_Click(object sender, EventArgs e)
+        private void OfdConnect_Click(object sender, EventArgs e) //Кнопка "Настрока связи с ОФД"
         {
             if (File.Exists(OfdKKTProfiles))
             {
@@ -283,19 +283,13 @@ namespace WindowsFormsApplication1
                     TimeSpan timeout = TimeSpan.FromMinutes(1);
                     if (Ofdconnect.Status != ServiceControllerStatus.Stopped)
                     {
-                        tbResult.Text = string.Format("{0}", "Перезапуск службы. Запускаем службу...");
-                        // Останавливаем службу
                         Ofdconnect.Stop();
                         Ofdconnect.WaitForStatus(ServiceControllerStatus.Stopped, timeout);
-                        tbResult.Text = string.Format("{0}", "Служба была успешно остановлена!");
                     }
                     if (Ofdconnect.Status != ServiceControllerStatus.Running)
                     {
-                        tbResult.Text = string.Format("{0}", "Перезапуск службы. Запускаем службу...");
-                        // Запускаем службу
                         Ofdconnect.Start();
                         Ofdconnect.WaitForStatus(ServiceControllerStatus.Running, timeout);
-                        tbResult.Text = string.Format("{0}", "Служба была успешно запущена!");
                     }
                     Thread.Sleep(2000);
                     Driver.FNGetInfoExchangeStatus();
