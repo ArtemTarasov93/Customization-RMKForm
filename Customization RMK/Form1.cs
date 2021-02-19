@@ -276,6 +276,7 @@ namespace WindowsFormsApplication1
                 catch (Exception)
                 {
                     tbResult.Text = string.Format("{0}", "Не достаточно прав доступа");
+                    return;
                 }
                 try
                 {
@@ -297,6 +298,7 @@ namespace WindowsFormsApplication1
                 catch (Exception)
                 {
                     tbResult.Text = string.Format("{0}", "Ошибка при перезапуске службы");
+                    return;
                 }
             }
             else
