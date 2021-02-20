@@ -198,13 +198,13 @@ namespace CustomizationRMKForm
             {
                 if (Directory.Exists(DirNewPatch))
                 {
-                    FirmwareUpdate(NewPatchFirmwareKey, "Файл скопирован. Идёт обновление прошивки", Patch, NewPatch);
+                    FirmwareUpdate("Файл скопирован. Идёт обновление прошивки", Patch, NewPatch);
                     UpdateFirmwareTimer.Start();
                 }
                 else
                 {
                     Directory.CreateDirectory(DirNewPatch);
-                    FirmwareUpdate(NewPatchFirmwareKey, "Папки созданы, файл скопирован. Идёт обновление прошивки", Patch, NewPatch);
+                    FirmwareUpdate("Папки созданы, файл скопирован. Идёт обновление прошивки", Patch, NewPatch);
                     UpdateFirmwareTimer.Start();
                 }
             }
@@ -213,12 +213,12 @@ namespace CustomizationRMKForm
                 tbResult.Text = string.Format("{0}", "Проблема с доступом к файлу");
             }
         }
-        private void FirmwareUpdate(string b, string g, string p, string newp) //Функция обновления информации по прошивке
+        private void FirmwareUpdate(string g, string p, string newp) //Функция обновления информации по прошивке
         {
             File.Copy(p, newp, true);
             tbResult.Text = string.Format("{0}", g);
             Driver.UpdateFirmwareMethod = 0;
-            Driver.FileName = b;
+            Driver.FileName = newp;
             Driver.UpdateFirmware();
             Firmware.Enabled = false;
             FirmwareKey.Enabled = false;
