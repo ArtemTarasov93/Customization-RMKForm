@@ -41,10 +41,11 @@
             this.FirmwareKey = new System.Windows.Forms.Button();
             this.tbResult = new System.Windows.Forms.TextBox();
             this.TerminalPage = new System.Windows.Forms.TabPage();
-            this.UpdateFirmwareTimer = new System.Windows.Forms.Timer(this.components);
-            this.Regsvr = new System.Windows.Forms.Button();
-            this.TerminalResult = new System.Windows.Forms.TextBox();
+            this.SettingConnection = new System.Windows.Forms.Button();
             this.VerifyResults = new System.Windows.Forms.Button();
+            this.TerminalResult = new System.Windows.Forms.TextBox();
+            this.Regsvr = new System.Windows.Forms.Button();
+            this.UpdateFirmwareTimer = new System.Windows.Forms.Timer(this.components);
             this.TabControl.SuspendLayout();
             this.KKMPage.SuspendLayout();
             this.TerminalPage.SuspendLayout();
@@ -184,6 +185,7 @@
             // 
             // TerminalPage
             // 
+            this.TerminalPage.Controls.Add(this.SettingConnection);
             this.TerminalPage.Controls.Add(this.VerifyResults);
             this.TerminalPage.Controls.Add(this.TerminalResult);
             this.TerminalPage.Controls.Add(this.Regsvr);
@@ -195,16 +197,45 @@
             this.TerminalPage.Text = "Эквайринг";
             this.TerminalPage.UseVisualStyleBackColor = true;
             // 
-            // UpdateFirmwareTimer
+            // SettingConnection
             // 
-            this.UpdateFirmwareTimer.Interval = 200;
-            this.UpdateFirmwareTimer.Tick += new System.EventHandler(this.UpdateFirmwareTimer_Tick);
+            this.SettingConnection.BackColor = System.Drawing.Color.Transparent;
+            this.SettingConnection.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.SettingConnection.Location = new System.Drawing.Point(181, 35);
+            this.SettingConnection.Name = "SettingConnection";
+            this.SettingConnection.Size = new System.Drawing.Size(149, 23);
+            this.SettingConnection.TabIndex = 18;
+            this.SettingConnection.Text = "Настройка связи";
+            this.SettingConnection.UseVisualStyleBackColor = false;
+            this.SettingConnection.Click += new System.EventHandler(this.SettingConnection_Click);
+            // 
+            // VerifyResults
+            // 
+            this.VerifyResults.BackColor = System.Drawing.Color.Transparent;
+            this.VerifyResults.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.VerifyResults.Location = new System.Drawing.Point(181, 6);
+            this.VerifyResults.Name = "VerifyResults";
+            this.VerifyResults.Size = new System.Drawing.Size(149, 23);
+            this.VerifyResults.TabIndex = 17;
+            this.VerifyResults.Text = "Сверка итогов";
+            this.VerifyResults.UseVisualStyleBackColor = false;
+            this.VerifyResults.Click += new System.EventHandler(this.VerifyResults_Click);
+            // 
+            // TerminalResult
+            // 
+            this.TerminalResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TerminalResult.Location = new System.Drawing.Point(8, 274);
+            this.TerminalResult.Multiline = true;
+            this.TerminalResult.Name = "TerminalResult";
+            this.TerminalResult.Size = new System.Drawing.Size(322, 20);
+            this.TerminalResult.TabIndex = 16;
             // 
             // Regsvr
             // 
             this.Regsvr.BackColor = System.Drawing.Color.Transparent;
             this.Regsvr.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Regsvr.Location = new System.Drawing.Point(8, 123);
+            this.Regsvr.Location = new System.Drawing.Point(8, 6);
             this.Regsvr.Name = "Regsvr";
             this.Regsvr.Size = new System.Drawing.Size(149, 23);
             this.Regsvr.TabIndex = 15;
@@ -212,27 +243,10 @@
             this.Regsvr.UseVisualStyleBackColor = false;
             this.Regsvr.Click += new System.EventHandler(this.Regsvr_Click);
             // 
-            // TerminalResult
+            // UpdateFirmwareTimer
             // 
-            this.TerminalResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TerminalResult.Location = new System.Drawing.Point(6, 152);
-            this.TerminalResult.Multiline = true;
-            this.TerminalResult.Name = "TerminalResult";
-            this.TerminalResult.Size = new System.Drawing.Size(322, 142);
-            this.TerminalResult.TabIndex = 16;
-            // 
-            // VerifyResults
-            // 
-            this.VerifyResults.BackColor = System.Drawing.Color.Transparent;
-            this.VerifyResults.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.VerifyResults.Location = new System.Drawing.Point(179, 6);
-            this.VerifyResults.Name = "VerifyResults";
-            this.VerifyResults.Size = new System.Drawing.Size(149, 23);
-            this.VerifyResults.TabIndex = 17;
-            this.VerifyResults.Text = "Сверка итогов";
-            this.VerifyResults.UseVisualStyleBackColor = false;
-            this.VerifyResults.Click += new System.EventHandler(this.VerifyResults_Click);
+            this.UpdateFirmwareTimer.Interval = 200;
+            this.UpdateFirmwareTimer.Tick += new System.EventHandler(this.UpdateFirmwareTimer_Tick);
             // 
             // CustomizationRMKForm
             // 
@@ -271,6 +285,7 @@
         private System.Windows.Forms.TextBox TerminalResult;
         private System.Windows.Forms.Button Regsvr;
         private System.Windows.Forms.Button VerifyResults;
+        private System.Windows.Forms.Button SettingConnection;
     }
 }
 

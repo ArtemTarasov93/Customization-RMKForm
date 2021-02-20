@@ -30,6 +30,7 @@ namespace CustomizationRMKForm
         string SerialNumber;
         string Organization = "";
         string Adress = "";
+        const string PFile = @"C:\sc552\p";
         public CustomizationRMKForm()
         {
             InitializeComponent();
@@ -362,6 +363,51 @@ namespace CustomizationRMKForm
             catch
             {
                 TerminalResult.Text = string.Format("{0}", "Ошибка запуска сверки итогов");
+            }
+        }
+
+        private void SettingConnection_Click(object sender, EventArgs e) // Кнопка "Настройка связи"
+        {
+            Process PCreate = new Process();
+            PCreate.StartInfo.Arguments = "36";
+            PCreate.StartInfo.FileName = @"C:\sc552\LoadParm.exe";
+            PCreate.Start();
+            Thread.Sleep(3000);
+            for (int i = 0; i < 6; i++)
+            {
+                if (File.Exists(PFile))
+                {
+                    TerminalResult.Text = string.Format("{0}", "Связь установлена");
+                    return;
+                }
+                else
+                {
+                    Thread.Sleep(1000);
+                }
+            }
+            if (File.Exists(PFile) == false)
+            {
+                string[] ports = SerialPort.GetPortNames();
+                for (int i = 0; i < ports.Count(); i++)
+                {
+                    string PortNumbrer = ports[i].Replace("COM","");
+                    string PinpadCom = "ComPort=" + PortNumbrer + "\r\nPrinterEnd=01\r\nSpeed=115200\r\nShowScreens=1\r\nNewProtocol=1";
+                    File.WriteAllText(@"C:\sc552\pinpad.ini", PinpadCom);
+                    PCreate.Start();
+                    Thread.Sleep(3000);
+                    for (int u = 0; u < 6; u++)
+                    {
+                        if (File.Exists(PFile))
+                        {
+                            TerminalResult.Text = string.Format("{0}", "Связь установлена");
+                            return;
+                        }
+                        else
+                        {
+                            Thread.Sleep(1000);
+                        }
+                    }
+                }
             }
         }
     }
