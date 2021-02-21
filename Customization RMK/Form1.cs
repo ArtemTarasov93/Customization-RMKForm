@@ -144,13 +144,13 @@ namespace CustomizationRMKForm
             {
                 if (Directory.Exists(DirNewPatch))
                 {
-                    FirmwareUpdate("Файл скопирован. Идёт обновление прошивки", Patch, NewPatch);
+                    FirmwareUpdate(Patch, NewPatch);
                     UpdateFirmwareTimer.Start();
                 }
                 else
                 {
                     Directory.CreateDirectory(DirNewPatch);
-                    FirmwareUpdate("Папки созданы, файл скопирован. Идёт обновление прошивки", Patch, NewPatch);
+                    FirmwareUpdate(Patch, NewPatch);
                     UpdateFirmwareTimer.Start();
                 }
             }
@@ -159,10 +159,9 @@ namespace CustomizationRMKForm
                 tbResult.Text = string.Format("{0}", "Проблема с доступом к файлу");
             }
         }
-        private void FirmwareUpdate(string g, string p, string newp) //Функция обновления информации по прошивке
+        private void FirmwareUpdate(string patch, string newp) //Функция обновления информации по прошивке
         {
-            File.Copy(p, newp, true);
-            tbResult.Text = string.Format("{0}", g);
+            File.Copy(patch, newp, true);
             Driver.UpdateFirmwareMethod = 0;
             Driver.FileName = newp;
             Driver.UpdateFirmware();
