@@ -140,33 +140,24 @@ namespace CustomizationRMKForm
         }
         private void Frimware(string Patch, string NewPatch) //Функция прошивки
         {
-            if (File.Exists(PatchFirmwareKey))
+            if (File.Exists(Patch))
             {
-                if (Directory.Exists(DirNewPatch))
-                {
-                    FirmwareUpdate(Patch, NewPatch);
-                    UpdateFirmwareTimer.Start();
-                }
-                else
+                if (Directory.Exists(DirNewPatch) == false)
                 {
                     Directory.CreateDirectory(DirNewPatch);
-                    FirmwareUpdate(Patch, NewPatch);
-                    UpdateFirmwareTimer.Start();
                 }
+                File.Copy(Patch, NewPatch, true);
+                Driver.UpdateFirmwareMethod = 0;
+                Driver.FileName = NewPatch;
+                Driver.UpdateFirmware();
+                Firmware.Enabled = false;
+                FirmwareKey.Enabled = false;
+                UpdateFirmwareTimer.Start();
             }
             else
             {
                 tbResult.Text = string.Format("{0}", "Проблема с доступом к файлу");
             }
-        }
-        private void FirmwareUpdate(string patch, string newp) //Функция обновления информации по прошивке
-        {
-            File.Copy(patch, newp, true);
-            Driver.UpdateFirmwareMethod = 0;
-            Driver.FileName = newp;
-            Driver.UpdateFirmware();
-            Firmware.Enabled = false;
-            FirmwareKey.Enabled = false;
         }
         private void UpdateFirmwareTimer_Tick(object sender, EventArgs e) //Таймер обновления информации по прошивке
         {
