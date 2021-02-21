@@ -63,7 +63,7 @@ namespace CustomizationRMKForm
             Driver.Timeout = 1000;
             Driver.IPAddress = "192.168.137.111";
             Driver.GetECRStatus();
-            CollectionDataResult();
+            PrintOut();
             Licence.Enabled = true;
             if (Driver.ECRBuild != 19018)
             {
@@ -95,61 +95,7 @@ namespace CustomizationRMKForm
                 tbResult.Text = string.Format("{0}", "Установлена актуальная прошивка");
             }
         }
-        private void CollectionDataResult() //Функция текстового описания режимов
-        {
-            switch (Driver.ECRMode)
-            {
-                case 0:
-                    PrintOut("Принтер в рабочем режиме");
-                    break;
-                case 1:
-                    PrintOut("Выдача данных");
-                    break;
-                case 2:
-                    PrintOut("Открытая смена, 24 часа не кончились");
-                    break;
-                case 3:
-                    PrintOut("Открытая смена, 24 часа кончились");
-                    break;
-                case 4:
-                    PrintOut("Закрытая смена");
-                    break;
-                case 5:
-                    PrintOut("Блокировка по неправильному паролю налогового инспектора");
-                    break;
-                case 6:
-                    PrintOut("Ожидание подтверждения ввода даты");
-                    break;
-                case 7:
-                    PrintOut("Разрешение изменения положения десятичной точки");
-                    break;
-                case 8:
-                    PrintOut("Открытый документ");
-                    break;
-                case 9:
-                    PrintOut("Режим разрешения технологического обнуления");
-                    break;
-                case 10:
-                    PrintOut("Тестовый прогон");
-                    break;
-                case 11:
-                    PrintOut("Печать полного фискального отчета");
-                    break;
-                case 12:
-                    PrintOut("Печать длинного отчета ЭКЛЗ");
-                    break;
-                case 13:
-                    PrintOut("Работа с фискальным подкладным документом");
-                    break;
-                case 14:
-                    PrintOut("Печать подкладного документа");
-                    break;
-                case 15:
-                    PrintOut("Фискальный подкладной документ сформирован");
-                    break;
-            }
-        }
-        private void PrintOut(string a) //Функция вывода информации
+        private void PrintOut() //Функция вывода информации
         {
             UpdateResult();
             if (Driver.ResultCode == 0)
@@ -166,7 +112,7 @@ namespace CustomizationRMKForm
                     "\r\nПодрежим: {5}" +
                     "\r\nЧеков не передано: {6}" +
                     "\r\nОрганизация: {7}" +
-                    "\r\nАдрес: {8}", Driver.ECRBuild, Driver.ECRMode, a, Driver.UDescription, SerialNumber, Driver.ECRAdvancedModeDescription, Driver.MessageCount, Organization, Adress);
+                    "\r\nАдрес: {8}", Driver.ECRBuild, Driver.ECRMode, Driver.ECRModeDescription, Driver.UDescription, SerialNumber, Driver.ECRAdvancedModeDescription, Driver.MessageCount, Organization, Adress);
                 Licence.Enabled = true;
             }
         }
