@@ -38,7 +38,7 @@
             this.KKMPage = new System.Windows.Forms.TabPage();
             this.StatickIP = new System.Windows.Forms.Button();
             this.OfdConnect = new System.Windows.Forms.Button();
-            this.FirmwareKey = new System.Windows.Forms.Button();
+            this.FirmwareNotKey = new System.Windows.Forms.Button();
             this.tbResult = new System.Windows.Forms.TextBox();
             this.TerminalPage = new System.Windows.Forms.TabPage();
             this.SettingConnection = new System.Windows.Forms.Button();
@@ -123,7 +123,7 @@
             // 
             this.KKMPage.Controls.Add(this.StatickIP);
             this.KKMPage.Controls.Add(this.OfdConnect);
-            this.KKMPage.Controls.Add(this.FirmwareKey);
+            this.KKMPage.Controls.Add(this.FirmwareNotKey);
             this.KKMPage.Controls.Add(this.PrintStringOut);
             this.KKMPage.Controls.Add(this.ShowProperties);
             this.KKMPage.Controls.Add(this.tbResult);
@@ -162,17 +162,17 @@
             this.OfdConnect.UseVisualStyleBackColor = false;
             this.OfdConnect.Click += new System.EventHandler(this.OfdConnect_Click);
             // 
-            // FirmwareKey
+            // FirmwareNotKey
             // 
-            this.FirmwareKey.Enabled = false;
-            this.FirmwareKey.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.FirmwareKey.Location = new System.Drawing.Point(178, 64);
-            this.FirmwareKey.Name = "FirmwareKey";
-            this.FirmwareKey.Size = new System.Drawing.Size(149, 23);
-            this.FirmwareKey.TabIndex = 12;
-            this.FirmwareKey.Text = "Прошивка без ключей";
-            this.FirmwareKey.UseVisualStyleBackColor = true;
-            this.FirmwareKey.Click += new System.EventHandler(this.FirmwareKey_Click);
+            this.FirmwareNotKey.Enabled = false;
+            this.FirmwareNotKey.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.FirmwareNotKey.Location = new System.Drawing.Point(178, 64);
+            this.FirmwareNotKey.Name = "FirmwareNotKey";
+            this.FirmwareNotKey.Size = new System.Drawing.Size(149, 23);
+            this.FirmwareNotKey.TabIndex = 12;
+            this.FirmwareNotKey.Text = "Прошивка без ключей";
+            this.FirmwareNotKey.UseVisualStyleBackColor = true;
+            this.FirmwareNotKey.Click += new System.EventHandler(this.FirmwareNotKey_Click);
             // 
             // tbResult
             // 
@@ -279,7 +279,7 @@
         private System.Windows.Forms.TabPage TerminalPage;
         private System.Windows.Forms.TextBox tbResult;
         private System.Windows.Forms.Timer UpdateFirmwareTimer;
-        private System.Windows.Forms.Button FirmwareKey;
+        private System.Windows.Forms.Button FirmwareNotKey;
         private System.Windows.Forms.Button OfdConnect;
         private System.Windows.Forms.Button StatickIP;
         private System.Windows.Forms.TextBox TerminalResult;

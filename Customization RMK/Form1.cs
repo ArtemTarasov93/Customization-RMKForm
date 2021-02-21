@@ -72,7 +72,7 @@ namespace CustomizationRMKForm
                     if (Driver.ECRAdvancedMode == 0)
                     {
                         Firmware.Enabled = true;
-                        FirmwareKey.Enabled = true;
+                        FirmwareNotKey.Enabled = true;
                     }
                     else
                     {
@@ -134,7 +134,7 @@ namespace CustomizationRMKForm
         {
             Frimware(PatchFirmware, NewPatchFirmware);
         }
-        private void FirmwareKey_Click(object sender, EventArgs e)
+        private void FirmwareNotKey_Click(object sender, EventArgs e) //Кнопка "Прошивка без ключей"
         {
             Frimware(PatchFirmwareKey, NewPatchFirmwareKey);
         }
@@ -151,7 +151,7 @@ namespace CustomizationRMKForm
                 Driver.FileName = NewPatch;
                 Driver.UpdateFirmware();
                 Firmware.Enabled = false;
-                FirmwareKey.Enabled = false;
+                FirmwareNotKey.Enabled = false;
                 UpdateFirmwareTimer.Start();
             }
             else
