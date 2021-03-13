@@ -20,10 +20,10 @@ namespace CustomizationRMKForm
 {
     public partial class CustomizationRMKForm : Form
     {
-        const string PatchFirmware = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM\firmware\upd_app.bin";
-        const string NewPatchFirmware = @"C:\Files\KKM\upd_app.bin";
         const string PatchFirmwareKey = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM\firmware\upd_app_key.bin";
         const string NewPatchFirmwareKey = @"C:\Files\KKM\upd_app_key.bin";
+        const string PatchFirmware = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM\firmware\upd_app.bin";
+        const string NewPatchFirmware = @"C:\Files\KKM\upd_app.bin";
         const string DirNewPatch = @"C:\Files\KKM";
         const string OfdKKTProfiles = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM\ofd\KKTProfiles.ini";
         const string OfdSettings = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM\ofd\Settings.ini";
@@ -38,8 +38,6 @@ namespace CustomizationRMKForm
         }
 
         readonly DrvFR Driver;
-
-        //************************************************************KKT*******************************************************************
 
         private void UpdateResult() //Функция вывода информации о выполнении команды
         {
@@ -132,11 +130,11 @@ namespace CustomizationRMKForm
         }
         private void Firmware_Click(object sender, EventArgs e) //Кнопка "Прошивка с ключами"
         {
-            Frimware(PatchFirmware, NewPatchFirmware);
+            Frimware(PatchFirmwareKey, NewPatchFirmwareKey);
         }
         private void FirmwareNotKey_Click(object sender, EventArgs e) //Кнопка "Прошивка без ключей"
         {
-            Frimware(PatchFirmwareKey, NewPatchFirmwareKey);
+            Frimware(PatchFirmware, NewPatchFirmware);
         }
         private void Frimware(string Patch, string NewPatch) //Функция прошивки
         {
