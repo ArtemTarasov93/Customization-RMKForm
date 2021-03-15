@@ -46,6 +46,7 @@
             this.TerminalResult = new System.Windows.Forms.TextBox();
             this.Regsvr = new System.Windows.Forms.Button();
             this.UpdateFirmwareTimer = new System.Windows.Forms.Timer(this.components);
+            this.MakeSettings = new System.Windows.Forms.Button();
             this.TabControl.SuspendLayout();
             this.KKMPage.SuspendLayout();
             this.TerminalPage.SuspendLayout();
@@ -121,6 +122,7 @@
             // 
             // KKMPage
             // 
+            this.KKMPage.Controls.Add(this.MakeSettings);
             this.KKMPage.Controls.Add(this.StatickIP);
             this.KKMPage.Controls.Add(this.OfdConnect);
             this.KKMPage.Controls.Add(this.FirmwareNotKey);
@@ -248,6 +250,17 @@
             this.UpdateFirmwareTimer.Interval = 200;
             this.UpdateFirmwareTimer.Tick += new System.EventHandler(this.UpdateFirmwareTimer_Tick);
             // 
+            // MakeSettings
+            // 
+            this.MakeSettings.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.MakeSettings.Location = new System.Drawing.Point(5, 64);
+            this.MakeSettings.Name = "MakeSettings";
+            this.MakeSettings.Size = new System.Drawing.Size(149, 23);
+            this.MakeSettings.TabIndex = 15;
+            this.MakeSettings.Text = "Внести настройки 1С";
+            this.MakeSettings.UseVisualStyleBackColor = true;
+            this.MakeSettings.Click += new System.EventHandler(this.MakeSettings_Click);
+            // 
             // CustomizationRMKForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -286,6 +299,7 @@
         private System.Windows.Forms.Button Regsvr;
         private System.Windows.Forms.Button VerifyResults;
         private System.Windows.Forms.Button SettingConnection;
+        private System.Windows.Forms.Button MakeSettings;
     }
 }
 

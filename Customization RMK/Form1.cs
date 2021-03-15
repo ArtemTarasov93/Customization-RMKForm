@@ -12,10 +12,10 @@ using System.IO;
 using System.Threading;
 using System.Diagnostics;
 using System.IO.Ports;
-using System.Collections;
 using System.ServiceProcess;
-using System.Management;
 using System.Data.OleDb;
+using System.Security.Principal;
+using System.Net;
 
 namespace CustomizationRMKForm
 {
@@ -31,7 +31,13 @@ namespace CustomizationRMKForm
         string SerialNumber;
         string Organization = "";
         string Adress = "";
+        string IdPvz = "";
+        string StrGuid = "";
+        string OrganizationDB = "";
         const string PFile = @"C:\sc552\p";
+        const string Shara = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM";
+        readonly OleDbConnection OleDbConnection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=\\office\service\LanDesk\Soft\Softnolandesk\KKM\DatabaseKKM.mdb");
+        readonly string ComputerName = Dns.GetHostName();
         public CustomizationRMKForm()
         {
             InitializeComponent();
@@ -168,12 +174,11 @@ namespace CustomizationRMKForm
         }
         private void Licence_Click(object sender, EventArgs e) //Кнопка "Установить лицензию"
         {
-            OleDbConnection OleDbConnection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=\\office\service\LanDesk\Soft\Softnolandesk\KKM\DatabaseKKM.mdb");
             OleDbCommand SelectCommand = new OleDbCommand($"SELECT HEX, Digital_Sign FROM Licences WHERE (Fuctory_number = '{SerialNumber}')", OleDbConnection);
             UpdateFirmwareTimer.Stop();
             string LicenseHEX = "";
             string DigitalSignHEX = "";
-            if (Directory.Exists(@"\\office\service\LanDesk\Soft\Softnolandesk\KKM"))
+            if (Directory.Exists(Shara))
             {
                 OleDbConnection.Open();
                 OleDbDataReader DataReader = SelectCommand.ExecuteReader();
@@ -375,6 +380,109 @@ namespace CustomizationRMKForm
                     }
                 }
             }
+        }
+        private void MakeSettings_Click(object sender, EventArgs e) //Кнопка "Внести настройки 1С"
+        {
+            if (Directory.Exists(Shara))
+            {
+                if (IsRunAsAdmin())
+                {
+                    string OleBdSelect = $"SELECT Computers.Computer_name, " +
+                    $"Computers.Id_Pvz, " +
+                    $"Computers.[Guid], " +
+                    $"Adress.Organization " +
+                    $"FROM(Computers INNER JOIN Adress ON Computers.Id_Pvz = Adress.Id_Pvz) " +
+                    $"WHERE(Computers.Computer_name = '{ComputerName}')";
+                    OleDbCommand SelectCommand = new OleDbCommand(OleBdSelect, OleDbConnection);
+                    OleDbConnection.Open();
+                    OleDbDataReader DataReader = SelectCommand.ExecuteReader();
+                    try
+                    {
+                        while (DataReader.Read())
+                        {
+                            IdPvz = Convert.ToString(DataReader["Id_Pvz"]);
+                            StrGuid = Convert.ToString(DataReader["Guid"]);
+                            OrganizationDB = Convert.ToString(DataReader["Organization"]);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        tbResult.Text = string.Format("{0}", "Ошибка запроса");
+                    }
+                    finally
+                    {
+                        if (DataReader != null && !DataReader.IsClosed)
+                        {
+                            DataReader.Close();
+                        }
+                        OleDbConnection.Close();
+                    }
+                    if (IdPvz != "" && StrGuid != "" && OrganizationDB != "")
+                    {
+                        string[] Users = Directory.GetDirectories("C:\\Users\\");
+                        string[] UsersArray = { @"C:\Users\All Users", @"C:\Users\Default", @"C:\Users\Default User", @"C:\Users\Public", @"C:\Users\Администратор", @"C:\Users\Administrator", @"C:\Users\AdminPickup", @"C:\Users\Все пользователи" };
+                        Users = (from x in Users where !UsersArray.Contains(x) select x).ToArray();
+                        string StringFileGuid =
+                            "{\r\n" +
+                            "{\"\"},\r\n" +
+                            "{\r\n" +
+                            "{\"Universal\",\r\n" +
+                            "{\"ClientID\",\r\n" +
+                            "{\"#\",fc01b5df-97fe-449b-83d4-218a090e681e," + StrGuid + "},\"\"},\r\n" +
+                            "{\r\n" +
+                            "{\"\"}\r\n" +
+                            "}\r\n" +
+                            "},\r\n" +
+                            "{\"\"}\r\n" +
+                            "}\r\n" +
+                            "}";
+                        for (int i = 0; i < Users.Count(); i++)
+                        {
+                            string UsersDirectoryGuid = Users[i] + @"\AppData\Local\1C\1cv8";
+                            string UsersFileGuid = UsersDirectoryGuid + "\\1cv8u.pfl";
+                            string UsersDirectory_1CEStart = Users[i] + @"\AppData\Roaming\1C\1CEStart";
+                            string UsersFile_1CEStart = UsersDirectory_1CEStart + "\\ibases.v8i";
+                            if (!Directory.Exists(UsersDirectoryGuid))
+                            {
+                                Directory.CreateDirectory(UsersDirectoryGuid);
+                            }
+                            if (!Directory.Exists(UsersDirectory_1CEStart))
+                            {
+                                Directory.CreateDirectory(UsersDirectory_1CEStart);
+                            }
+                            File.WriteAllText(UsersFileGuid, StringFileGuid);
+                            switch (OrganizationDB)
+                            {
+                                case "kupishoes":
+                                    File.Copy(Shara + "\\kupishoes.v8i", UsersFile_1CEStart, true);
+                                    break;
+                                case "puru":
+                                    File.Copy(Shara + "\\puru.v8i", UsersFile_1CEStart, true);
+                                    break;
+                            }
+                            tbResult.Text = string.Format("{0}", "Настройки внесены");
+                        }
+                    }
+                    else
+                    {
+                        tbResult.Text = string.Format("{0}", "Пвз или компьютер не найден в базе");
+                    }
+                }
+                else
+                {
+                    tbResult.Text = string.Format("{0}", "Не достаточно прав");
+                }
+            }
+            else
+            {
+                tbResult.Text = string.Format("{0}", "Нет доступа к шаре");
+            }
+        }
+        bool IsRunAsAdmin() //Функция проверки прав администратора
+        {
+            WindowsIdentity id = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(id);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
     }
 }
