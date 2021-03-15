@@ -15,6 +15,7 @@ using System.IO.Ports;
 using System.Collections;
 using System.ServiceProcess;
 using System.Management;
+using System.Data.OleDb;
 
 namespace CustomizationRMKForm
 {
@@ -167,27 +168,58 @@ namespace CustomizationRMKForm
         }
         private void Licence_Click(object sender, EventArgs e) //Кнопка "Установить лицензию"
         {
+            OleDbConnection OleDbConnection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=\\office\service\LanDesk\Soft\Softnolandesk\KKM\DatabaseKKM.mdb");
+            OleDbCommand SelectCommand = new OleDbCommand($"SELECT HEX, Digital_Sign FROM Licences WHERE (Fuctory_number = '{SerialNumber}')", OleDbConnection);
             UpdateFirmwareTimer.Stop();
-            string LicencesText = File.ReadAllText(@"\\office\service\LanDesk\Soft\Softnolandesk\KKM\Licenses\Licenses_All.slf"); //Читаем текст в файле
-            string[] SolitLicencesText = LicencesText.Split('	', '\n'); //Делим текст на массив по разделителям
-            int index = Array.IndexOf(SolitLicencesText, SerialNumber); //Сравниваем элементы массива с зоводским номером кассы
-            string LicenseHEX = SolitLicencesText[index + 1]; //Следущее значение после зоводского номера в файле это НЕХ лицезии
-            string DigitalSignHEX = SolitLicencesText[index + 2]; //Второе значение после заводского номера DigitalSign
-
-            if (index > 0)
+            string LicenseHEX = "";
+            string DigitalSignHEX = "";
+            if (Directory.Exists(@"\\office\service\LanDesk\Soft\Softnolandesk\KKM"))
             {
-                Driver.License = LicenseHEX;
-                Driver.DigitalSign = DigitalSignHEX;
-                Driver.WriteFeatureLicenses();
-                UpdateResult();
-                if (Driver.ResultCode == 0)
+                OleDbConnection.Open();
+                OleDbDataReader DataReader = SelectCommand.ExecuteReader();
+                try
                 {
-                    tbResult.Text = string.Format("{0}", "Лицензия установлена на ККТ");
+                    while (DataReader.Read())
+                    {
+                        LicenseHEX = Convert.ToString(DataReader["HEX"]);
+                        DigitalSignHEX = Convert.ToString(DataReader["Digital_Sign"]);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    tbResult.Text = string.Format("{0}: {1}", "Ошибка запроса", ex.Message);
+                }
+                finally
+                {
+                    if (DataReader != null && !DataReader.IsClosed)
+                    {
+                        DataReader.Close();
+                    }
+                    OleDbConnection.Close();
+                }
+                if (LicenseHEX != "" && DigitalSignHEX != "")
+                {
+                    Driver.License = LicenseHEX;
+                    Driver.DigitalSign = DigitalSignHEX;
+                    Driver.WriteFeatureLicenses();
+                    UpdateResult();
+                    if (Driver.ResultCode == 0)
+                    {
+                        tbResult.Text = string.Format("{0}", "Лицензия установлена на ККТ");
+                    }
+                    else
+                    {
+                        tbResult.Text = string.Format("{0}", "Ошибка лицензирования");
+                    }
+                }
+                else
+                {
+                    tbResult.Text = string.Format("{0}", "Лицензии на ККМ не существует");
                 }
             }
             else
             {
-                tbResult.Text = string.Format("{0}", "Лицензии на ККМ не существует");
+                tbResult.Text = string.Format("{0}", "Нет доступа к шаре");
             }
         }
 
