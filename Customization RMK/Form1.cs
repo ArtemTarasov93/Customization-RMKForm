@@ -45,7 +45,16 @@ namespace CustomizationRMKForm
         }
 
         readonly DrvFR Driver;
-
+        private void CustomizationRMKForm_Load(object sender, EventArgs e)
+        {
+            if (!IsRunAsAdmin())
+            {
+                StatickIP.Enabled = false;
+                OfdConnect.Enabled = false;
+                MakeSettings.Enabled = false;
+                Regsvr.Enabled = false;
+            }
+        }
         private void UpdateResult() //Функция вывода информации о выполнении команды
         {
             tbResult.Text = string.Format("{0}, {1}", Driver.ResultCode, Driver.ResultCodeDescription);
@@ -476,17 +485,6 @@ namespace CustomizationRMKForm
             WindowsIdentity id = WindowsIdentity.GetCurrent();
             WindowsPrincipal principal = new WindowsPrincipal(id);
             return principal.IsInRole(WindowsBuiltInRole.Administrator);
-        }
-
-        private void CustomizationRMKForm_Load(object sender, EventArgs e)
-        {
-            if (!IsRunAsAdmin())
-            {
-                StatickIP.Enabled = false;
-                OfdConnect.Enabled = false;
-                MakeSettings.Enabled = false;
-                Regsvr.Enabled = false;
-            }
         }
     }
 }
