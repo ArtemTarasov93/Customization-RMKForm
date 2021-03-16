@@ -36,7 +36,7 @@ namespace CustomizationRMKForm
         string OrganizationDB = "";
         const string PFile = @"C:\sc552\p";
         const string Shara = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM";
-        readonly OleDbConnection OleDbConnection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=\\office\service\LanDesk\Soft\Softnolandesk\KKM\DatabaseKKM.mdb");
+        readonly OleDbConnection OleDbConnection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=\\office\service\LanDesk\Soft\Softnolandesk\KKM\DB\DatabaseKKM.mdb");
         readonly string ComputerName = Dns.GetHostName();
         public CustomizationRMKForm()
         {
