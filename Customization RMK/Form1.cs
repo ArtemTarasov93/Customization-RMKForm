@@ -385,92 +385,85 @@ namespace CustomizationRMKForm
         {
             if (Directory.Exists(Shara))
             {
-                if (IsRunAsAdmin())
-                {
-                    string OleBdSelect = $"SELECT Computers.Computer_name, " +
+                string OleBdSelect = $"SELECT Computers.Computer_name, " +
                     $"Computers.Id_Pvz, " +
                     $"Computers.[Guid], " +
                     $"Adress.Organization " +
                     $"FROM(Computers INNER JOIN Adress ON Computers.Id_Pvz = Adress.Id_Pvz) " +
                     $"WHERE(Computers.Computer_name = '{ComputerName}')";
-                    OleDbCommand SelectCommand = new OleDbCommand(OleBdSelect, OleDbConnection);
-                    OleDbConnection.Open();
-                    OleDbDataReader DataReader = SelectCommand.ExecuteReader();
-                    try
+                OleDbCommand SelectCommand = new OleDbCommand(OleBdSelect, OleDbConnection);
+                OleDbConnection.Open();
+                OleDbDataReader DataReader = SelectCommand.ExecuteReader();
+                try
+                {
+                    while (DataReader.Read())
                     {
-                        while (DataReader.Read())
+                        IdPvz = Convert.ToString(DataReader["Id_Pvz"]);
+                        StrGuid = Convert.ToString(DataReader["Guid"]);
+                        OrganizationDB = Convert.ToString(DataReader["Organization"]);
+                    }
+                }
+                catch (Exception)
+                {
+                    tbResult.Text = string.Format("{0}", "Ошибка запроса");
+                }
+                finally
+                {
+                    if (DataReader != null && !DataReader.IsClosed)
+                    {
+                        DataReader.Close();
+                    }
+                    OleDbConnection.Close();
+                }
+                if (IdPvz != "" && StrGuid != "" && OrganizationDB != "")
+                {
+                    string[] Users = Directory.GetDirectories("C:\\Users\\");
+                    string[] UsersArray = { @"C:\Users\All Users", @"C:\Users\Default", @"C:\Users\Default User", @"C:\Users\Public", @"C:\Users\Администратор", @"C:\Users\Administrator", @"C:\Users\AdminPickup", @"C:\Users\Все пользователи" };
+                    Users = (from x in Users where !UsersArray.Contains(x) select x).ToArray();
+                    string StringFileGuid =
+                        "{\r\n" +
+                        "{\"\"},\r\n" +
+                        "{\r\n" +
+                        "{\"Universal\",\r\n" +
+                        "{\"ClientID\",\r\n" +
+                        "{\"#\",fc01b5df-97fe-449b-83d4-218a090e681e," + StrGuid + "},\"\"},\r\n" +
+                        "{\r\n" +
+                        "{\"\"}\r\n" +
+                        "}\r\n" +
+                        "},\r\n" +
+                        "{\"\"}\r\n" +
+                        "}\r\n" +
+                        "}";
+                    for (int i = 0; i < Users.Count(); i++)
+                    {
+                        string UsersDirectoryGuid = Users[i] + @"\AppData\Local\1C\1cv8";
+                        string UsersFileGuid = UsersDirectoryGuid + "\\1cv8u.pfl";
+                        string UsersDirectory_1CEStart = Users[i] + @"\AppData\Roaming\1C\1CEStart";
+                        string UsersFile_1CEStart = UsersDirectory_1CEStart + "\\ibases.v8i";
+                        if (!Directory.Exists(UsersDirectoryGuid))
                         {
-                            IdPvz = Convert.ToString(DataReader["Id_Pvz"]);
-                            StrGuid = Convert.ToString(DataReader["Guid"]);
-                            OrganizationDB = Convert.ToString(DataReader["Organization"]);
+                            Directory.CreateDirectory(UsersDirectoryGuid);
                         }
-                    }
-                    catch (Exception)
-                    {
-                        tbResult.Text = string.Format("{0}", "Ошибка запроса");
-                    }
-                    finally
-                    {
-                        if (DataReader != null && !DataReader.IsClosed)
+                        if (!Directory.Exists(UsersDirectory_1CEStart))
                         {
-                            DataReader.Close();
+                            Directory.CreateDirectory(UsersDirectory_1CEStart);
                         }
-                        OleDbConnection.Close();
-                    }
-                    if (IdPvz != "" && StrGuid != "" && OrganizationDB != "")
-                    {
-                        string[] Users = Directory.GetDirectories("C:\\Users\\");
-                        string[] UsersArray = { @"C:\Users\All Users", @"C:\Users\Default", @"C:\Users\Default User", @"C:\Users\Public", @"C:\Users\Администратор", @"C:\Users\Administrator", @"C:\Users\AdminPickup", @"C:\Users\Все пользователи" };
-                        Users = (from x in Users where !UsersArray.Contains(x) select x).ToArray();
-                        string StringFileGuid =
-                            "{\r\n" +
-                            "{\"\"},\r\n" +
-                            "{\r\n" +
-                            "{\"Universal\",\r\n" +
-                            "{\"ClientID\",\r\n" +
-                            "{\"#\",fc01b5df-97fe-449b-83d4-218a090e681e," + StrGuid + "},\"\"},\r\n" +
-                            "{\r\n" +
-                            "{\"\"}\r\n" +
-                            "}\r\n" +
-                            "},\r\n" +
-                            "{\"\"}\r\n" +
-                            "}\r\n" +
-                            "}";
-                        for (int i = 0; i < Users.Count(); i++)
+                        File.WriteAllText(UsersFileGuid, StringFileGuid);
+                        switch (OrganizationDB)
                         {
-                            string UsersDirectoryGuid = Users[i] + @"\AppData\Local\1C\1cv8";
-                            string UsersFileGuid = UsersDirectoryGuid + "\\1cv8u.pfl";
-                            string UsersDirectory_1CEStart = Users[i] + @"\AppData\Roaming\1C\1CEStart";
-                            string UsersFile_1CEStart = UsersDirectory_1CEStart + "\\ibases.v8i";
-                            if (!Directory.Exists(UsersDirectoryGuid))
-                            {
-                                Directory.CreateDirectory(UsersDirectoryGuid);
-                            }
-                            if (!Directory.Exists(UsersDirectory_1CEStart))
-                            {
-                                Directory.CreateDirectory(UsersDirectory_1CEStart);
-                            }
-                            File.WriteAllText(UsersFileGuid, StringFileGuid);
-                            switch (OrganizationDB)
-                            {
-                                case "kupishoes":
-                                    File.Copy(Shara + "\\kupishoes.v8i", UsersFile_1CEStart, true);
-                                    break;
-                                case "puru":
-                                    File.Copy(Shara + "\\puru.v8i", UsersFile_1CEStart, true);
-                                    break;
-                            }
-                            tbResult.Text = string.Format("{0}", "Настройки внесены");
+                            case "kupishoes":
+                                File.Copy(Shara + "\\kupishoes.v8i", UsersFile_1CEStart, true);
+                                break;
+                            case "puru":
+                                File.Copy(Shara + "\\puru.v8i", UsersFile_1CEStart, true);
+                                break;
                         }
-                    }
-                    else
-                    {
-                        tbResult.Text = string.Format("{0}", "Пвз или компьютер не найден в базе");
+                        tbResult.Text = string.Format("{0}", "Настройки внесены");
                     }
                 }
                 else
                 {
-                    tbResult.Text = string.Format("{0}", "Не достаточно прав");
+                    tbResult.Text = string.Format("{0}", "Пвз или компьютер не найден в базе");
                 }
             }
             else
@@ -483,6 +476,17 @@ namespace CustomizationRMKForm
             WindowsIdentity id = WindowsIdentity.GetCurrent();
             WindowsPrincipal principal = new WindowsPrincipal(id);
             return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+
+        private void CustomizationRMKForm_Load(object sender, EventArgs e)
+        {
+            if (!IsRunAsAdmin())
+            {
+                StatickIP.Enabled = false;
+                OfdConnect.Enabled = false;
+                MakeSettings.Enabled = false;
+                Regsvr.Enabled = false;
+            }
         }
     }
 }

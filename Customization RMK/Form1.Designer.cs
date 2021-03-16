@@ -36,6 +36,7 @@
             this.Licence = new System.Windows.Forms.Button();
             this.TabControl = new System.Windows.Forms.TabControl();
             this.KKMPage = new System.Windows.Forms.TabPage();
+            this.MakeSettings = new System.Windows.Forms.Button();
             this.StatickIP = new System.Windows.Forms.Button();
             this.OfdConnect = new System.Windows.Forms.Button();
             this.FirmwareNotKey = new System.Windows.Forms.Button();
@@ -46,7 +47,6 @@
             this.TerminalResult = new System.Windows.Forms.TextBox();
             this.Regsvr = new System.Windows.Forms.Button();
             this.UpdateFirmwareTimer = new System.Windows.Forms.Timer(this.components);
-            this.MakeSettings = new System.Windows.Forms.Button();
             this.TabControl.SuspendLayout();
             this.KKMPage.SuspendLayout();
             this.TerminalPage.SuspendLayout();
@@ -139,6 +139,17 @@
             this.KKMPage.TabIndex = 0;
             this.KKMPage.Text = "ККМ";
             this.KKMPage.UseVisualStyleBackColor = true;
+            // 
+            // MakeSettings
+            // 
+            this.MakeSettings.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.MakeSettings.Location = new System.Drawing.Point(5, 64);
+            this.MakeSettings.Name = "MakeSettings";
+            this.MakeSettings.Size = new System.Drawing.Size(149, 23);
+            this.MakeSettings.TabIndex = 15;
+            this.MakeSettings.Text = "Внести настройки 1С";
+            this.MakeSettings.UseVisualStyleBackColor = true;
+            this.MakeSettings.Click += new System.EventHandler(this.MakeSettings_Click);
             // 
             // StatickIP
             // 
@@ -250,17 +261,6 @@
             this.UpdateFirmwareTimer.Interval = 200;
             this.UpdateFirmwareTimer.Tick += new System.EventHandler(this.UpdateFirmwareTimer_Tick);
             // 
-            // MakeSettings
-            // 
-            this.MakeSettings.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.MakeSettings.Location = new System.Drawing.Point(5, 64);
-            this.MakeSettings.Name = "MakeSettings";
-            this.MakeSettings.Size = new System.Drawing.Size(149, 23);
-            this.MakeSettings.TabIndex = 15;
-            this.MakeSettings.Text = "Внести настройки 1С";
-            this.MakeSettings.UseVisualStyleBackColor = true;
-            this.MakeSettings.Click += new System.EventHandler(this.MakeSettings_Click);
-            // 
             // CustomizationRMKForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -272,6 +272,7 @@
             this.Name = "CustomizationRMKForm";
             this.Text = "Настройка РМК";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.CustomizationRMKForm_Load);
             this.TabControl.ResumeLayout(false);
             this.KKMPage.ResumeLayout(false);
             this.KKMPage.PerformLayout();
