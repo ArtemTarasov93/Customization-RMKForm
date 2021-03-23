@@ -47,6 +47,7 @@
             this.TerminalResult = new System.Windows.Forms.TextBox();
             this.Regsvr = new System.Windows.Forms.Button();
             this.UpdateFirmwareTimer = new System.Windows.Forms.Timer(this.components);
+            this.UpdateDrvFR = new System.Windows.Forms.Button();
             this.TabControl.SuspendLayout();
             this.KKMPage.SuspendLayout();
             this.TerminalPage.SuspendLayout();
@@ -68,10 +69,10 @@
             this.PrintStringOut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PrintStringOut.Font = new System.Drawing.Font("Lucida Fax", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PrintStringOut.Location = new System.Drawing.Point(5, 127);
+            this.PrintStringOut.Location = new System.Drawing.Point(5, 155);
             this.PrintStringOut.Multiline = true;
             this.PrintStringOut.Name = "PrintStringOut";
-            this.PrintStringOut.Size = new System.Drawing.Size(322, 141);
+            this.PrintStringOut.Size = new System.Drawing.Size(322, 156);
             this.PrintStringOut.TabIndex = 6;
             // 
             // ShowProperties
@@ -117,11 +118,12 @@
             this.TabControl.Location = new System.Drawing.Point(0, 0);
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(343, 326);
+            this.TabControl.Size = new System.Drawing.Size(343, 369);
             this.TabControl.TabIndex = 11;
             // 
             // KKMPage
             // 
+            this.KKMPage.Controls.Add(this.UpdateDrvFR);
             this.KKMPage.Controls.Add(this.MakeSettings);
             this.KKMPage.Controls.Add(this.StatickIP);
             this.KKMPage.Controls.Add(this.OfdConnect);
@@ -135,7 +137,7 @@
             this.KKMPage.Location = new System.Drawing.Point(4, 22);
             this.KKMPage.Name = "KKMPage";
             this.KKMPage.Padding = new System.Windows.Forms.Padding(3);
-            this.KKMPage.Size = new System.Drawing.Size(335, 300);
+            this.KKMPage.Size = new System.Drawing.Size(335, 343);
             this.KKMPage.TabIndex = 0;
             this.KKMPage.Text = "ККМ";
             this.KKMPage.UseVisualStyleBackColor = true;
@@ -191,7 +193,7 @@
             // 
             this.tbResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbResult.Location = new System.Drawing.Point(5, 274);
+            this.tbResult.Location = new System.Drawing.Point(5, 317);
             this.tbResult.Name = "tbResult";
             this.tbResult.Size = new System.Drawing.Size(322, 20);
             this.tbResult.TabIndex = 7;
@@ -261,11 +263,23 @@
             this.UpdateFirmwareTimer.Interval = 200;
             this.UpdateFirmwareTimer.Tick += new System.EventHandler(this.UpdateFirmwareTimer_Tick);
             // 
+            // UpdateDrvFR
+            // 
+            this.UpdateDrvFR.BackColor = System.Drawing.Color.Transparent;
+            this.UpdateDrvFR.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.UpdateDrvFR.Location = new System.Drawing.Point(5, 122);
+            this.UpdateDrvFR.Name = "UpdateDrvFR";
+            this.UpdateDrvFR.Size = new System.Drawing.Size(149, 23);
+            this.UpdateDrvFR.TabIndex = 16;
+            this.UpdateDrvFR.Text = "Обновить драйвер";
+            this.UpdateDrvFR.UseVisualStyleBackColor = false;
+            this.UpdateDrvFR.Click += new System.EventHandler(this.UpdateDrvFR_Click);
+            // 
             // CustomizationRMKForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(349, 332);
+            this.ClientSize = new System.Drawing.Size(349, 373);
             this.Controls.Add(this.TabControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -301,6 +315,7 @@
         private System.Windows.Forms.Button VerifyResults;
         private System.Windows.Forms.Button SettingConnection;
         private System.Windows.Forms.Button MakeSettings;
+        private System.Windows.Forms.Button UpdateDrvFR;
     }
 }
 

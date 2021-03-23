@@ -38,6 +38,7 @@ namespace CustomizationRMKForm
         const string Shara = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM";
         readonly OleDbConnection OleDbConnection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=\\office\service\LanDesk\Soft\Softnolandesk\KKM\DB\DatabaseKKM.mdb");
         readonly string ComputerName = Dns.GetHostName();
+        readonly string VersionDrvFR = FileVersionInfo.GetVersionInfo(@"C:\Program Files (x86)\SHTRIH-M\DrvFR 4.14\Bin\DrvFRTst.exe").FileVersion;
         public CustomizationRMKForm()
         {
             InitializeComponent();
@@ -47,12 +48,17 @@ namespace CustomizationRMKForm
         readonly DrvFR Driver;
         private void CustomizationRMKForm_Load(object sender, EventArgs e)
         {
+            if (VersionDrvFR == "4.14.0.803")
+            {
+                UpdateDrvFR.Enabled = false;
+            }
             if (!IsRunAsAdmin())
             {
                 StatickIP.Enabled = false;
                 OfdConnect.Enabled = false;
                 MakeSettings.Enabled = false;
                 Regsvr.Enabled = false;
+                UpdateDrvFR.Enabled = false;
             }
         }
         private void UpdateResult() //Функция вывода информации о выполнении команды
@@ -77,7 +83,23 @@ namespace CustomizationRMKForm
             Driver.Timeout = 1000;
             Driver.IPAddress = "192.168.137.111";
             Driver.GetECRStatus();
-            PrintOut();
+            if (Driver.ResultCode == 0)
+            {
+                Driver.ReadSerialNumber();
+                SerialNumber = Driver.SerialNumber;
+                Driver.FNGetInfoExchangeStatus();
+                ReadTable();
+                PrintStringOut.Text = string.Format(
+                    $"Драйвер: {VersionDrvFR}" +
+                    $"\r\nСборка ПО: {Driver.ECRBuild}" +
+                    $"\r\nРежим: {Driver.ECRMode}, {Driver.ECRModeDescription} " +
+                    $"\r\nМодель: {Driver.UDescription}" +
+                    $"\r\nЗН: {SerialNumber}" +
+                    $"\r\nПодрежим: {Driver.ECRAdvancedModeDescription}" +
+                    $"\r\nЧеков не передано: {Driver.MessageCount}" +
+                    $"\r\nОрганизация: {Organization}" +
+                    $"\r\nАдрес: {Adress}");
+            }
             Licence.Enabled = true;
             if (Driver.ECRBuild != 19018)
             {
@@ -85,8 +107,15 @@ namespace CustomizationRMKForm
                 {
                     if (Driver.ECRAdvancedMode == 0)
                     {
-                        Firmware.Enabled = true;
-                        FirmwareNotKey.Enabled = true;
+                        if (VersionDrvFR == "4.14.0.803")
+                        {
+                            Firmware.Enabled = true;
+                            FirmwareNotKey.Enabled = true;
+                        }
+                        else
+                        {
+                            tbResult.Text = string.Format("{0}", "Для прошивки необходимо обновить драйвер");
+                        }
                     }
                     else
                     {
@@ -107,27 +136,6 @@ namespace CustomizationRMKForm
             else
             {
                 tbResult.Text = string.Format("{0}", "Установлена актуальная прошивка");
-            }
-        }
-        private void PrintOut() //Функция вывода информации
-        {
-            UpdateResult();
-            if (Driver.ResultCode == 0)
-            {
-                Driver.ReadSerialNumber();
-                SerialNumber = Driver.SerialNumber;
-                Driver.FNGetInfoExchangeStatus();
-                ReadTable();
-                PrintStringOut.Text = string.Format(
-                    "Сборка ПО: {0}" +
-                    "\r\nРежим: {1}, {2}" +
-                    "\r\nМодель: {3}" +
-                    "\r\nЗН: {4}" +
-                    "\r\nПодрежим: {5}" +
-                    "\r\nЧеков не передано: {6}" +
-                    "\r\nОрганизация: {7}" +
-                    "\r\nАдрес: {8}", Driver.ECRBuild, Driver.ECRMode, Driver.ECRModeDescription, Driver.UDescription, SerialNumber, Driver.ECRAdvancedModeDescription, Driver.MessageCount, Organization, Adress);
-                Licence.Enabled = true;
             }
         }
         private void ReadTable() //Функция чтения таблиц
@@ -485,6 +493,24 @@ namespace CustomizationRMKForm
             WindowsIdentity id = WindowsIdentity.GetCurrent();
             WindowsPrincipal principal = new WindowsPrincipal(id);
             return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+
+        private void UpdateDrvFR_Click(object sender, EventArgs e) //Кнопка "Обновить драйвер"
+        {
+            string DrvFRPatch = @"\\office\service\LanDesk\Soft\Softnolandesk\Тест драйвера ФР\DrvFR_4.14_803.exe";
+            if (File.Exists(DrvFRPatch))
+            {
+                if (!Directory.Exists(@"C:\Files"))
+                {
+                    Directory.CreateDirectory(@"C:\Files");
+                }
+                File.Copy(DrvFRPatch, @"C:\Files\DrvFR_4.14_803.exe", true);
+                Process.Start(@"C:\Files\DrvFR_4.14_803.exe");
+            }
+            else
+            {
+                tbResult.Text = string.Format("{0}", "Нет доступа к шаре");
+            }
         }
     }
 }
