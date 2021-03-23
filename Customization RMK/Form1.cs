@@ -21,6 +21,7 @@ namespace CustomizationRMKForm
 {
     public partial class CustomizationRMKForm : Form
     {
+        const string CustomizationRMKVersion = "1.0.1.0";
         const string PatchFirmwareKey = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM\firmware\upd_app_key.bin";
         const string NewPatchFirmwareKey = @"C:\Files\KKM\upd_app_key.bin";
         const string PatchFirmware = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM\firmware\upd_app.bin";
@@ -28,6 +29,7 @@ namespace CustomizationRMKForm
         const string DirNewPatch = @"C:\Files\KKM";
         const string OfdKKTProfiles = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM\ofd\KKTProfiles.ini";
         const string OfdSettings = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM\ofd\Settings.ini";
+        const string CustomizationRMKPatch = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM\Настройка РМК.exe";
         string SerialNumber;
         string Organization = "";
         string Adress = "";
@@ -48,6 +50,23 @@ namespace CustomizationRMKForm
         readonly DrvFR Driver;
         private void CustomizationRMKForm_Load(object sender, EventArgs e)
         {
+            if (File.Exists(CustomizationRMKPatch))
+            {
+                string CustomizationRMKVersionShara = FileVersionInfo.GetVersionInfo(CustomizationRMKPatch).FileVersion;
+                if (CustomizationRMKVersionShara != CustomizationRMKVersion)
+                {
+                    switch (MessageBox.Show("Для программы есть обновление!\r\nОбновить?", "Настройка РМК", MessageBoxButtons.YesNo))
+                    {
+                        case DialogResult.Yes:
+                            Process.Start(Shara + "\\UpdateCustomizationRMK.exe");
+                            Application.Exit();
+                            break;
+                        case DialogResult.No:
+                            break;
+                    }
+                }
+            }
+            
             if (VersionDrvFR == "4.14.0.803")
             {
                 UpdateDrvFR.Enabled = false;
