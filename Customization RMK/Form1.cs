@@ -63,13 +63,13 @@ namespace CustomizationRMKForm
         }
         private void UpdateResult() //Функция вывода информации о выполнении команды
         {
-            tbResult.Text = string.Format("{0}, {1}", Driver.ResultCode, Driver.ResultCodeDescription);
+            tbResult.Text = string.Format($"{Driver.ResultCode}, {Driver.ResultCodeDescription}");
         }
         
         private void ShowProperties_Click(object sender, EventArgs e) //Кнопка "Свойства"
         {
             UpdateFirmwareTimer.Stop();
-            tbResult.Text = string.Format("{0}", "");
+            tbResult.Text = string.Format("");
             ShowProperties.BackColor = Color.Transparent;
             Driver.ShowProperties();
         }
@@ -114,28 +114,28 @@ namespace CustomizationRMKForm
                         }
                         else
                         {
-                            tbResult.Text = string.Format("{0}", "Для прошивки необходимо обновить драйвер");
+                            tbResult.Text = string.Format("Для прошивки необходимо обновить драйвер");
                         }
                     }
                     else
                     {
-                        tbResult.Text = string.Format("{0}", "Вставьте чековую ленту в ККМ");
+                        tbResult.Text = string.Format("Вставьте чековую ленту в ККМ");
                     }
                 }
                 else if (Driver.ECRMode == 0)
                 {
                     ShowProperties.BackColor = Color.Lime;
                     Licence.Enabled = false;
-                    tbResult.Text = string.Format("{0}", "Проверьте связь 'Зеленая кнопка'");
+                    tbResult.Text = string.Format("Проверьте связь 'Зеленая кнопка'");
                 }
                 else
                 {
-                    tbResult.Text = string.Format("{0}", "Переведите кассу в режим 'Закрытая смена'");
+                    tbResult.Text = string.Format("Переведите кассу в режим 'Закрытая смена'");
                 }
             }
             else
             {
-                tbResult.Text = string.Format("{0}", "Установлена актуальная прошивка");
+                tbResult.Text = string.Format("Установлена актуальная прошивка");
             }
         }
         private void ReadTable() //Функция чтения таблиц
@@ -178,12 +178,12 @@ namespace CustomizationRMKForm
             }
             else
             {
-                tbResult.Text = string.Format("{0}", "Проблема с доступом к файлу");
+                tbResult.Text = string.Format("Проблема с доступом к файлу");
             }
         }
         private void UpdateFirmwareTimer_Tick(object sender, EventArgs e) //Таймер обновления информации по прошивке
         {
-            tbResult.Text = string.Format("{0}", Driver.UpdateFirmwareStatusMessage);
+            tbResult.Text = string.Format(Driver.UpdateFirmwareStatusMessage);
             if (Driver.UpdateFirmwareStatus == 0)
             {
                 UpdateFirmwareTimer.Stop();
@@ -209,7 +209,7 @@ namespace CustomizationRMKForm
                 }
                 catch (Exception ex)
                 {
-                    tbResult.Text = string.Format("{0}: {1}", "Ошибка запроса", ex.Message);
+                    tbResult.Text = string.Format($"Ошибка запроса {ex.Message}");
                 }
                 finally
                 {
@@ -227,21 +227,21 @@ namespace CustomizationRMKForm
                     UpdateResult();
                     if (Driver.ResultCode == 0)
                     {
-                        tbResult.Text = string.Format("{0}", "Лицензия установлена на ККТ");
+                        tbResult.Text = string.Format("Лицензия установлена на ККТ");
                     }
                     else
                     {
-                        tbResult.Text = string.Format("{0}", "Ошибка лицензирования");
+                        tbResult.Text = string.Format("Ошибка лицензирования");
                     }
                 }
                 else
                 {
-                    tbResult.Text = string.Format("{0}", "Лицензии на ККМ не существует");
+                    tbResult.Text = string.Format("Лицензии на ККМ не существует");
                 }
             }
             else
             {
-                tbResult.Text = string.Format("{0}", "Нет доступа к шаре");
+                tbResult.Text = string.Format("Нет доступа к шаре");
             }
         }
 
@@ -251,7 +251,7 @@ namespace CustomizationRMKForm
             {
                 if (Directory.Exists(@"C:\Program Files (x86)\SHTRIH-M\DrvFR 4.14\Bin\OFDConnect") == false)
                 {
-                    tbResult.Text = string.Format("{0}", "Не установлен тест драйвера 4.14");
+                    tbResult.Text = string.Format("Не установлен тест драйвера 4.14");
                     return;
                 }
                 if (Directory.Exists(DirNewPatch) == false)
@@ -265,7 +265,7 @@ namespace CustomizationRMKForm
                 }
                 catch (Exception)
                 {
-                    tbResult.Text = string.Format("{0}", "Не достаточно прав доступа");
+                    tbResult.Text = string.Format("Не достаточно прав доступа");
                     return;
                 }
                 try
@@ -282,17 +282,17 @@ namespace CustomizationRMKForm
                         Ofdconnect.Start();
                         Ofdconnect.WaitForStatus(ServiceControllerStatus.Running, timeout);
                     }
-                    tbResult.Text = string.Format("{0}", "Служба перезапущена");
+                    tbResult.Text = string.Format("Служба перезапущена");
                 }
                 catch (Exception)
                 {
-                    tbResult.Text = string.Format("{0}", "Ошибка при перезапуске службы");
+                    tbResult.Text = string.Format("Ошибка при перезапуске службы");
                     return;
                 }
             }
             else
             {
-                tbResult.Text = string.Format("{0}", "Нет доступа к шаре");
+                tbResult.Text = string.Format("Нет доступа к шаре");
             }
         }
         private void StatickIP_Click(object sender, EventArgs e) // Кнопка "Установить IP Адрес"
@@ -307,7 +307,7 @@ namespace CustomizationRMKForm
             }
             catch
             {
-                tbResult.Text = string.Format("{0}", "Ошибка запуска скрипта PS");
+                tbResult.Text = string.Format("Ошибка запуска скрипта PS");
             }
         }
 
@@ -315,7 +315,7 @@ namespace CustomizationRMKForm
         {
             if (Directory.Exists(@"C:\sc552") == false)
             {
-                TerminalResult.Text = string.Format("{0}", @"Нет папки C:\sc552");
+                TerminalResult.Text = string.Format(@"Нет папки C:\sc552");
                 return;
             }
             if (File.Exists(@"C:\sc552\1C\3_par\SBRFCOM.dll"))
@@ -330,12 +330,12 @@ namespace CustomizationRMKForm
                 }
                 catch
                 {
-                    TerminalResult.Text = string.Format("{0}", "Ошибка регистрации библиотек");
+                    TerminalResult.Text = string.Format("Ошибка регистрации библиотек");
                 }
             }
             else
             {
-                TerminalResult.Text = string.Format("{0}", "Нет библиотеки на 3 параметра в папке sc552");
+                TerminalResult.Text = string.Format("Нет библиотеки на 3 параметра в папке sc552");
             }
         }
 
@@ -350,7 +350,7 @@ namespace CustomizationRMKForm
             }
             catch
             {
-                TerminalResult.Text = string.Format("{0}", "Ошибка запуска сверки итогов");
+                TerminalResult.Text = string.Format("Ошибка запуска сверки итогов");
             }
         }
 
@@ -365,7 +365,7 @@ namespace CustomizationRMKForm
             {
                 if (File.Exists(PFile))
                 {
-                    TerminalResult.Text = string.Format("{0}", "Связь установлена");
+                    TerminalResult.Text = string.Format("Связь установлена");
                     return;
                 }
                 else
@@ -387,7 +387,7 @@ namespace CustomizationRMKForm
                     {
                         if (File.Exists(PFile))
                         {
-                            TerminalResult.Text = string.Format("{0}", "Связь установлена");
+                            TerminalResult.Text = string.Format("Связь установлена");
                             return;
                         }
                         else
@@ -422,7 +422,7 @@ namespace CustomizationRMKForm
                 }
                 catch (Exception)
                 {
-                    tbResult.Text = string.Format("{0}", "Ошибка запроса");
+                    tbResult.Text = string.Format("Ошибка запроса");
                 }
                 finally
                 {
@@ -475,17 +475,17 @@ namespace CustomizationRMKForm
                                 File.Copy(Shara + "\\puru.v8i", UsersFile_1CEStart, true);
                                 break;
                         }
-                        tbResult.Text = string.Format("{0}", "Настройки внесены");
+                        tbResult.Text = string.Format("Настройки внесены");
                     }
                 }
                 else
                 {
-                    tbResult.Text = string.Format("{0}", "Пвз или компьютер не найден в базе");
+                    tbResult.Text = string.Format("Пвз или компьютер не найден в базе");
                 }
             }
             else
             {
-                tbResult.Text = string.Format("{0}", "Нет доступа к шаре");
+                tbResult.Text = string.Format("Нет доступа к шаре");
             }
         }
         bool IsRunAsAdmin() //Функция проверки прав администратора
@@ -509,7 +509,7 @@ namespace CustomizationRMKForm
             }
             else
             {
-                tbResult.Text = string.Format("{0}", "Нет доступа к шаре");
+                tbResult.Text = string.Format("Нет доступа к шаре");
             }
         }
     }
