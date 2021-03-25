@@ -187,7 +187,7 @@
             this.TerminalPage.Location = new System.Drawing.Point(4, 22);
             this.TerminalPage.Name = "TerminalPage";
             this.TerminalPage.Padding = new System.Windows.Forms.Padding(3);
-            this.TerminalPage.Size = new System.Drawing.Size(335, 281);
+            this.TerminalPage.Size = new System.Drawing.Size(335, 315);
             this.TerminalPage.TabIndex = 1;
             this.TerminalPage.Text = "Эквайринг";
             this.TerminalPage.UseVisualStyleBackColor = true;
@@ -196,7 +196,7 @@
             // 
             this.SettingConnection.BackColor = System.Drawing.Color.Transparent;
             this.SettingConnection.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.SettingConnection.Location = new System.Drawing.Point(181, 35);
+            this.SettingConnection.Location = new System.Drawing.Point(178, 35);
             this.SettingConnection.Name = "SettingConnection";
             this.SettingConnection.Size = new System.Drawing.Size(149, 23);
             this.SettingConnection.TabIndex = 18;
@@ -208,7 +208,7 @@
             // 
             this.VerifyResults.BackColor = System.Drawing.Color.Transparent;
             this.VerifyResults.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.VerifyResults.Location = new System.Drawing.Point(181, 6);
+            this.VerifyResults.Location = new System.Drawing.Point(178, 6);
             this.VerifyResults.Name = "VerifyResults";
             this.VerifyResults.Size = new System.Drawing.Size(149, 23);
             this.VerifyResults.TabIndex = 17;
@@ -220,7 +220,7 @@
             // 
             this.TerminalResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TerminalResult.Location = new System.Drawing.Point(8, 254);
+            this.TerminalResult.Location = new System.Drawing.Point(8, 288);
             this.TerminalResult.Multiline = true;
             this.TerminalResult.Name = "TerminalResult";
             this.TerminalResult.Size = new System.Drawing.Size(322, 20);
@@ -230,7 +230,7 @@
             // 
             this.Regsvr.BackColor = System.Drawing.Color.Transparent;
             this.Regsvr.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Regsvr.Location = new System.Drawing.Point(8, 6);
+            this.Regsvr.Location = new System.Drawing.Point(5, 6);
             this.Regsvr.Name = "Regsvr";
             this.Regsvr.Size = new System.Drawing.Size(149, 23);
             this.Regsvr.TabIndex = 15;
@@ -247,7 +247,7 @@
             this.AdminPage.Controls.Add(this.UpdateDrvFR);
             this.AdminPage.Location = new System.Drawing.Point(4, 22);
             this.AdminPage.Name = "AdminPage";
-            this.AdminPage.Size = new System.Drawing.Size(335, 281);
+            this.AdminPage.Size = new System.Drawing.Size(335, 315);
             this.AdminPage.TabIndex = 2;
             this.AdminPage.Text = "Админ";
             this.AdminPage.UseVisualStyleBackColor = true;
@@ -256,7 +256,7 @@
             // 
             this.AdminResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.AdminResult.Location = new System.Drawing.Point(5, 255);
+            this.AdminResult.Location = new System.Drawing.Point(5, 289);
             this.AdminResult.Name = "AdminResult";
             this.AdminResult.Size = new System.Drawing.Size(322, 20);
             this.AdminResult.TabIndex = 21;
@@ -265,7 +265,7 @@
             // MakeSettings
             // 
             this.MakeSettings.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.MakeSettings.Location = new System.Drawing.Point(8, 6);
+            this.MakeSettings.Location = new System.Drawing.Point(5, 6);
             this.MakeSettings.Name = "MakeSettings";
             this.MakeSettings.Size = new System.Drawing.Size(149, 23);
             this.MakeSettings.TabIndex = 20;
@@ -276,7 +276,7 @@
             // 
             this.OfdConnect.BackColor = System.Drawing.Color.Transparent;
             this.OfdConnect.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OfdConnect.Location = new System.Drawing.Point(181, 6);
+            this.OfdConnect.Location = new System.Drawing.Point(178, 6);
             this.OfdConnect.Name = "OfdConnect";
             this.OfdConnect.Size = new System.Drawing.Size(149, 23);
             this.OfdConnect.TabIndex = 19;
@@ -287,7 +287,7 @@
             // 
             this.StatickIP.BackColor = System.Drawing.Color.Transparent;
             this.StatickIP.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.StatickIP.Location = new System.Drawing.Point(8, 35);
+            this.StatickIP.Location = new System.Drawing.Point(5, 35);
             this.StatickIP.Name = "StatickIP";
             this.StatickIP.Size = new System.Drawing.Size(149, 23);
             this.StatickIP.TabIndex = 18;
@@ -298,7 +298,7 @@
             // 
             this.UpdateDrvFR.BackColor = System.Drawing.Color.Transparent;
             this.UpdateDrvFR.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.UpdateDrvFR.Location = new System.Drawing.Point(181, 35);
+            this.UpdateDrvFR.Location = new System.Drawing.Point(178, 35);
             this.UpdateDrvFR.Name = "UpdateDrvFR";
             this.UpdateDrvFR.Size = new System.Drawing.Size(149, 23);
             this.UpdateDrvFR.TabIndex = 17;
