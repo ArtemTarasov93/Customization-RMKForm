@@ -538,5 +538,11 @@ namespace CustomizationRMKForm
             Driver.RebootKKT();
             UpdateResult();
         }
+
+        private void ContinuePrint_Click(object sender, EventArgs e) //Кнопка "Продолжить печать"
+        {
+            Driver.ContinuePrint();
+            UpdateResult();
+        }
     }
 }
