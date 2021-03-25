@@ -533,7 +533,7 @@ namespace CustomizationRMKForm
             }
         }
 
-        private void RebootKKM_Click(object sender, EventArgs e)
+        private void RebootKKM_Click(object sender, EventArgs e) //Кнопка "Перезагрузить ККМ"
         {
             Driver.RebootKKT();
             UpdateResult();
