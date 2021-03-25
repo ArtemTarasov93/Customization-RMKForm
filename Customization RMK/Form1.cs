@@ -78,6 +78,7 @@ namespace CustomizationRMKForm
                 MakeSettings.Enabled = false;
                 Regsvr.Enabled = false;
                 UpdateDrvFR.Enabled = false;
+                AdminPage.Parent = null;
             }
         }
         private void UpdateResult() //Функция вывода информации о выполнении команды
@@ -270,7 +271,7 @@ namespace CustomizationRMKForm
             {
                 if (Directory.Exists(@"C:\Program Files (x86)\SHTRIH-M\DrvFR 4.14\Bin\OFDConnect") == false)
                 {
-                    tbResult.Text = string.Format("Не установлен тест драйвера 4.14");
+                    AdminResult.Text = string.Format("Не установлен тест драйвера 4.14");
                     return;
                 }
                 if (Directory.Exists(DirNewPatch) == false)
@@ -284,7 +285,7 @@ namespace CustomizationRMKForm
                 }
                 catch (Exception)
                 {
-                    tbResult.Text = string.Format("Не достаточно прав доступа");
+                    AdminResult.Text = string.Format("Не достаточно прав доступа");
                     return;
                 }
                 try
@@ -301,17 +302,17 @@ namespace CustomizationRMKForm
                         Ofdconnect.Start();
                         Ofdconnect.WaitForStatus(ServiceControllerStatus.Running, timeout);
                     }
-                    tbResult.Text = string.Format("Служба перезапущена");
+                    AdminResult.Text = string.Format("Служба перезапущена");
                 }
                 catch (Exception)
                 {
-                    tbResult.Text = string.Format("Ошибка при перезапуске службы");
+                    AdminResult.Text = string.Format("Ошибка при перезапуске службы");
                     return;
                 }
             }
             else
             {
-                tbResult.Text = string.Format("Нет доступа к шаре");
+                AdminResult.Text = string.Format("Нет доступа к шаре");
             }
         }
         private void StatickIP_Click(object sender, EventArgs e) // Кнопка "Установить IP Адрес"
@@ -326,7 +327,7 @@ namespace CustomizationRMKForm
             }
             catch
             {
-                tbResult.Text = string.Format("Ошибка запуска скрипта PS");
+                AdminResult.Text = string.Format("Ошибка запуска скрипта PS");
             }
         }
 
@@ -441,7 +442,7 @@ namespace CustomizationRMKForm
                 }
                 catch (Exception)
                 {
-                    tbResult.Text = string.Format("Ошибка запроса");
+                    AdminResult.Text = string.Format("Ошибка запроса");
                 }
                 finally
                 {
@@ -494,17 +495,17 @@ namespace CustomizationRMKForm
                                 File.Copy(Shara + "\\puru.v8i", UsersFile_1CEStart, true);
                                 break;
                         }
-                        tbResult.Text = string.Format("Настройки внесены");
+                        AdminResult.Text = string.Format("Настройки внесены");
                     }
                 }
                 else
                 {
-                    tbResult.Text = string.Format("Пвз или компьютер не найден в базе");
+                    AdminResult.Text = string.Format("Пвз или компьютер не найден в базе");
                 }
             }
             else
             {
-                tbResult.Text = string.Format("Нет доступа к шаре");
+                AdminResult.Text = string.Format("Нет доступа к шаре");
             }
         }
         bool IsRunAsAdmin() //Функция проверки прав администратора
@@ -528,9 +529,14 @@ namespace CustomizationRMKForm
             }
             else
             {
-                tbResult.Text = string.Format("Нет доступа к шаре");
+                AdminResult.Text = string.Format("Нет доступа к шаре");
             }
+        }
+
+        private void RebootKKM_Click(object sender, EventArgs e)
+        {
+            Driver.RebootKKT();
+            UpdateResult();
         }
     }
 }
-

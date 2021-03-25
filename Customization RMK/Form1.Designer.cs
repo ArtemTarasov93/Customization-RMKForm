@@ -36,9 +36,6 @@
             this.Licence = new System.Windows.Forms.Button();
             this.TabControl = new System.Windows.Forms.TabControl();
             this.KKMPage = new System.Windows.Forms.TabPage();
-            this.MakeSettings = new System.Windows.Forms.Button();
-            this.StatickIP = new System.Windows.Forms.Button();
-            this.OfdConnect = new System.Windows.Forms.Button();
             this.FirmwareNotKey = new System.Windows.Forms.Button();
             this.tbResult = new System.Windows.Forms.TextBox();
             this.TerminalPage = new System.Windows.Forms.TabPage();
@@ -46,11 +43,18 @@
             this.VerifyResults = new System.Windows.Forms.Button();
             this.TerminalResult = new System.Windows.Forms.TextBox();
             this.Regsvr = new System.Windows.Forms.Button();
+            this.AdminPage = new System.Windows.Forms.TabPage();
             this.UpdateFirmwareTimer = new System.Windows.Forms.Timer(this.components);
             this.UpdateDrvFR = new System.Windows.Forms.Button();
+            this.StatickIP = new System.Windows.Forms.Button();
+            this.OfdConnect = new System.Windows.Forms.Button();
+            this.MakeSettings = new System.Windows.Forms.Button();
+            this.AdminResult = new System.Windows.Forms.TextBox();
+            this.RebootKKM = new System.Windows.Forms.Button();
             this.TabControl.SuspendLayout();
             this.KKMPage.SuspendLayout();
             this.TerminalPage.SuspendLayout();
+            this.AdminPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // CollectionData
@@ -69,7 +73,7 @@
             this.PrintStringOut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PrintStringOut.Font = new System.Drawing.Font("Lucida Fax", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PrintStringOut.Location = new System.Drawing.Point(5, 155);
+            this.PrintStringOut.Location = new System.Drawing.Point(5, 93);
             this.PrintStringOut.Multiline = true;
             this.PrintStringOut.Name = "PrintStringOut";
             this.PrintStringOut.Size = new System.Drawing.Size(322, 156);
@@ -115,18 +119,16 @@
             // 
             this.TabControl.Controls.Add(this.KKMPage);
             this.TabControl.Controls.Add(this.TerminalPage);
+            this.TabControl.Controls.Add(this.AdminPage);
             this.TabControl.Location = new System.Drawing.Point(0, 0);
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(343, 369);
+            this.TabControl.Size = new System.Drawing.Size(343, 307);
             this.TabControl.TabIndex = 11;
             // 
             // KKMPage
             // 
-            this.KKMPage.Controls.Add(this.UpdateDrvFR);
-            this.KKMPage.Controls.Add(this.MakeSettings);
-            this.KKMPage.Controls.Add(this.StatickIP);
-            this.KKMPage.Controls.Add(this.OfdConnect);
+            this.KKMPage.Controls.Add(this.RebootKKM);
             this.KKMPage.Controls.Add(this.FirmwareNotKey);
             this.KKMPage.Controls.Add(this.PrintStringOut);
             this.KKMPage.Controls.Add(this.ShowProperties);
@@ -137,45 +139,10 @@
             this.KKMPage.Location = new System.Drawing.Point(4, 22);
             this.KKMPage.Name = "KKMPage";
             this.KKMPage.Padding = new System.Windows.Forms.Padding(3);
-            this.KKMPage.Size = new System.Drawing.Size(335, 343);
+            this.KKMPage.Size = new System.Drawing.Size(335, 281);
             this.KKMPage.TabIndex = 0;
             this.KKMPage.Text = "ККМ";
             this.KKMPage.UseVisualStyleBackColor = true;
-            // 
-            // MakeSettings
-            // 
-            this.MakeSettings.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.MakeSettings.Location = new System.Drawing.Point(5, 64);
-            this.MakeSettings.Name = "MakeSettings";
-            this.MakeSettings.Size = new System.Drawing.Size(149, 23);
-            this.MakeSettings.TabIndex = 15;
-            this.MakeSettings.Text = "Внести настройки 1С";
-            this.MakeSettings.UseVisualStyleBackColor = true;
-            this.MakeSettings.Click += new System.EventHandler(this.MakeSettings_Click);
-            // 
-            // StatickIP
-            // 
-            this.StatickIP.BackColor = System.Drawing.Color.Transparent;
-            this.StatickIP.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.StatickIP.Location = new System.Drawing.Point(5, 93);
-            this.StatickIP.Name = "StatickIP";
-            this.StatickIP.Size = new System.Drawing.Size(149, 23);
-            this.StatickIP.TabIndex = 14;
-            this.StatickIP.Text = "Установить IP Адрес";
-            this.StatickIP.UseVisualStyleBackColor = false;
-            this.StatickIP.Click += new System.EventHandler(this.StatickIP_Click);
-            // 
-            // OfdConnect
-            // 
-            this.OfdConnect.BackColor = System.Drawing.Color.Transparent;
-            this.OfdConnect.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OfdConnect.Location = new System.Drawing.Point(178, 93);
-            this.OfdConnect.Name = "OfdConnect";
-            this.OfdConnect.Size = new System.Drawing.Size(149, 23);
-            this.OfdConnect.TabIndex = 13;
-            this.OfdConnect.Text = "Настрока связи с ОФД";
-            this.OfdConnect.UseVisualStyleBackColor = false;
-            this.OfdConnect.Click += new System.EventHandler(this.OfdConnect_Click);
             // 
             // FirmwareNotKey
             // 
@@ -193,7 +160,7 @@
             // 
             this.tbResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbResult.Location = new System.Drawing.Point(5, 317);
+            this.tbResult.Location = new System.Drawing.Point(5, 255);
             this.tbResult.Name = "tbResult";
             this.tbResult.Size = new System.Drawing.Size(322, 20);
             this.tbResult.TabIndex = 7;
@@ -207,7 +174,7 @@
             this.TerminalPage.Location = new System.Drawing.Point(4, 22);
             this.TerminalPage.Name = "TerminalPage";
             this.TerminalPage.Padding = new System.Windows.Forms.Padding(3);
-            this.TerminalPage.Size = new System.Drawing.Size(335, 300);
+            this.TerminalPage.Size = new System.Drawing.Size(335, 281);
             this.TerminalPage.TabIndex = 1;
             this.TerminalPage.Text = "Эквайринг";
             this.TerminalPage.UseVisualStyleBackColor = true;
@@ -240,7 +207,7 @@
             // 
             this.TerminalResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TerminalResult.Location = new System.Drawing.Point(8, 274);
+            this.TerminalResult.Location = new System.Drawing.Point(8, 254);
             this.TerminalResult.Multiline = true;
             this.TerminalResult.Name = "TerminalResult";
             this.TerminalResult.Size = new System.Drawing.Size(322, 20);
@@ -258,6 +225,20 @@
             this.Regsvr.UseVisualStyleBackColor = false;
             this.Regsvr.Click += new System.EventHandler(this.Regsvr_Click);
             // 
+            // AdminPage
+            // 
+            this.AdminPage.Controls.Add(this.AdminResult);
+            this.AdminPage.Controls.Add(this.MakeSettings);
+            this.AdminPage.Controls.Add(this.OfdConnect);
+            this.AdminPage.Controls.Add(this.StatickIP);
+            this.AdminPage.Controls.Add(this.UpdateDrvFR);
+            this.AdminPage.Location = new System.Drawing.Point(4, 22);
+            this.AdminPage.Name = "AdminPage";
+            this.AdminPage.Size = new System.Drawing.Size(335, 281);
+            this.AdminPage.TabIndex = 2;
+            this.AdminPage.Text = "Админ";
+            this.AdminPage.UseVisualStyleBackColor = true;
+            // 
             // UpdateFirmwareTimer
             // 
             this.UpdateFirmwareTimer.Interval = 200;
@@ -267,19 +248,71 @@
             // 
             this.UpdateDrvFR.BackColor = System.Drawing.Color.Transparent;
             this.UpdateDrvFR.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.UpdateDrvFR.Location = new System.Drawing.Point(5, 122);
+            this.UpdateDrvFR.Location = new System.Drawing.Point(181, 35);
             this.UpdateDrvFR.Name = "UpdateDrvFR";
             this.UpdateDrvFR.Size = new System.Drawing.Size(149, 23);
-            this.UpdateDrvFR.TabIndex = 16;
+            this.UpdateDrvFR.TabIndex = 17;
             this.UpdateDrvFR.Text = "Обновить драйвер";
             this.UpdateDrvFR.UseVisualStyleBackColor = false;
-            this.UpdateDrvFR.Click += new System.EventHandler(this.UpdateDrvFR_Click);
+            // 
+            // StatickIP
+            // 
+            this.StatickIP.BackColor = System.Drawing.Color.Transparent;
+            this.StatickIP.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.StatickIP.Location = new System.Drawing.Point(8, 35);
+            this.StatickIP.Name = "StatickIP";
+            this.StatickIP.Size = new System.Drawing.Size(149, 23);
+            this.StatickIP.TabIndex = 18;
+            this.StatickIP.Text = "Установить IP Адрес";
+            this.StatickIP.UseVisualStyleBackColor = false;
+            // 
+            // OfdConnect
+            // 
+            this.OfdConnect.BackColor = System.Drawing.Color.Transparent;
+            this.OfdConnect.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.OfdConnect.Location = new System.Drawing.Point(181, 6);
+            this.OfdConnect.Name = "OfdConnect";
+            this.OfdConnect.Size = new System.Drawing.Size(149, 23);
+            this.OfdConnect.TabIndex = 19;
+            this.OfdConnect.Text = "Настрока связи с ОФД";
+            this.OfdConnect.UseVisualStyleBackColor = false;
+            // 
+            // MakeSettings
+            // 
+            this.MakeSettings.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.MakeSettings.Location = new System.Drawing.Point(8, 6);
+            this.MakeSettings.Name = "MakeSettings";
+            this.MakeSettings.Size = new System.Drawing.Size(149, 23);
+            this.MakeSettings.TabIndex = 20;
+            this.MakeSettings.Text = "Внести настройки 1С";
+            this.MakeSettings.UseVisualStyleBackColor = true;
+            // 
+            // AdminResult
+            // 
+            this.AdminResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AdminResult.Location = new System.Drawing.Point(5, 255);
+            this.AdminResult.Name = "AdminResult";
+            this.AdminResult.Size = new System.Drawing.Size(322, 20);
+            this.AdminResult.TabIndex = 21;
+            this.AdminResult.Text = "Здарова отец!";
+            // 
+            // RebootKKM
+            // 
+            this.RebootKKM.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.RebootKKM.Location = new System.Drawing.Point(5, 64);
+            this.RebootKKM.Name = "RebootKKM";
+            this.RebootKKM.Size = new System.Drawing.Size(149, 23);
+            this.RebootKKM.TabIndex = 13;
+            this.RebootKKM.Text = "Перезагрузить ККМ";
+            this.RebootKKM.UseVisualStyleBackColor = true;
+            this.RebootKKM.Click += new System.EventHandler(this.RebootKKM_Click);
             // 
             // CustomizationRMKForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(349, 373);
+            this.ClientSize = new System.Drawing.Size(349, 312);
             this.Controls.Add(this.TabControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -292,6 +325,8 @@
             this.KKMPage.PerformLayout();
             this.TerminalPage.ResumeLayout(false);
             this.TerminalPage.PerformLayout();
+            this.AdminPage.ResumeLayout(false);
+            this.AdminPage.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -308,14 +343,17 @@
         private System.Windows.Forms.TextBox tbResult;
         private System.Windows.Forms.Timer UpdateFirmwareTimer;
         private System.Windows.Forms.Button FirmwareNotKey;
-        private System.Windows.Forms.Button OfdConnect;
-        private System.Windows.Forms.Button StatickIP;
         private System.Windows.Forms.TextBox TerminalResult;
         private System.Windows.Forms.Button Regsvr;
         private System.Windows.Forms.Button VerifyResults;
         private System.Windows.Forms.Button SettingConnection;
+        private System.Windows.Forms.TabPage AdminPage;
+        private System.Windows.Forms.TextBox AdminResult;
         private System.Windows.Forms.Button MakeSettings;
+        private System.Windows.Forms.Button OfdConnect;
+        private System.Windows.Forms.Button StatickIP;
         private System.Windows.Forms.Button UpdateDrvFR;
+        private System.Windows.Forms.Button RebootKKM;
     }
 }
 
