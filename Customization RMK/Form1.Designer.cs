@@ -36,6 +36,7 @@
             this.Licence = new System.Windows.Forms.Button();
             this.TabControl = new System.Windows.Forms.TabControl();
             this.KKMPage = new System.Windows.Forms.TabPage();
+            this.ContinuePrint = new System.Windows.Forms.Button();
             this.RebootKKM = new System.Windows.Forms.Button();
             this.FirmwareNotKey = new System.Windows.Forms.Button();
             this.tbResult = new System.Windows.Forms.TextBox();
@@ -51,7 +52,6 @@
             this.StatickIP = new System.Windows.Forms.Button();
             this.UpdateDrvFR = new System.Windows.Forms.Button();
             this.UpdateFirmwareTimer = new System.Windows.Forms.Timer(this.components);
-            this.ContinuePrint = new System.Windows.Forms.Button();
             this.TabControl.SuspendLayout();
             this.KKMPage.SuspendLayout();
             this.TerminalPage.SuspendLayout();
@@ -145,6 +145,17 @@
             this.KKMPage.TabIndex = 0;
             this.KKMPage.Text = "ККМ";
             this.KKMPage.UseVisualStyleBackColor = true;
+            // 
+            // ContinuePrint
+            // 
+            this.ContinuePrint.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.ContinuePrint.Location = new System.Drawing.Point(5, 93);
+            this.ContinuePrint.Name = "ContinuePrint";
+            this.ContinuePrint.Size = new System.Drawing.Size(149, 23);
+            this.ContinuePrint.TabIndex = 14;
+            this.ContinuePrint.Text = "Продолжить печать";
+            this.ContinuePrint.UseVisualStyleBackColor = true;
+            this.ContinuePrint.Click += new System.EventHandler(this.ContinuePrint_Click);
             // 
             // RebootKKM
             // 
@@ -271,6 +282,7 @@
             this.MakeSettings.TabIndex = 20;
             this.MakeSettings.Text = "Внести настройки 1С";
             this.MakeSettings.UseVisualStyleBackColor = true;
+            this.MakeSettings.Click += new System.EventHandler(this.MakeSettings_Click);
             // 
             // OfdConnect
             // 
@@ -282,6 +294,7 @@
             this.OfdConnect.TabIndex = 19;
             this.OfdConnect.Text = "Настрока связи с ОФД";
             this.OfdConnect.UseVisualStyleBackColor = false;
+            this.OfdConnect.Click += new System.EventHandler(this.OfdConnect_Click);
             // 
             // StatickIP
             // 
@@ -293,6 +306,7 @@
             this.StatickIP.TabIndex = 18;
             this.StatickIP.Text = "Установить IP Адрес";
             this.StatickIP.UseVisualStyleBackColor = false;
+            this.StatickIP.Click += new System.EventHandler(this.StatickIP_Click);
             // 
             // UpdateDrvFR
             // 
@@ -304,22 +318,12 @@
             this.UpdateDrvFR.TabIndex = 17;
             this.UpdateDrvFR.Text = "Обновить драйвер";
             this.UpdateDrvFR.UseVisualStyleBackColor = false;
+            this.UpdateDrvFR.Click += new System.EventHandler(this.UpdateDrvFR_Click);
             // 
             // UpdateFirmwareTimer
             // 
             this.UpdateFirmwareTimer.Interval = 200;
             this.UpdateFirmwareTimer.Tick += new System.EventHandler(this.UpdateFirmwareTimer_Tick);
-            // 
-            // ContinuePrint
-            // 
-            this.ContinuePrint.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.ContinuePrint.Location = new System.Drawing.Point(5, 93);
-            this.ContinuePrint.Name = "ContinuePrint";
-            this.ContinuePrint.Size = new System.Drawing.Size(149, 23);
-            this.ContinuePrint.TabIndex = 14;
-            this.ContinuePrint.Text = "Продолжить печать";
-            this.ContinuePrint.UseVisualStyleBackColor = true;
-            this.ContinuePrint.Click += new System.EventHandler(this.ContinuePrint_Click);
             // 
             // CustomizationRMKForm
             // 
