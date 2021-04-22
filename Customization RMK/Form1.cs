@@ -66,7 +66,7 @@ namespace CustomizationRMKForm
 
             if (VersionDrvFR == "4.14.0.803")
             {
-                //UpdateDrvFR.Enabled = false;
+                UpdateDrvFR.Enabled = false;
             }
             if (!IsRunAsAdmin())
             {
