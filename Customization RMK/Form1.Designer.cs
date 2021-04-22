@@ -44,7 +44,6 @@
             this.SettingConnection = new System.Windows.Forms.Button();
             this.VerifyResults = new System.Windows.Forms.Button();
             this.TerminalResult = new System.Windows.Forms.TextBox();
-            this.Regsvr = new System.Windows.Forms.Button();
             this.AdminPage = new System.Windows.Forms.TabPage();
             this.AdminResult = new System.Windows.Forms.TextBox();
             this.MakeSettings = new System.Windows.Forms.Button();
@@ -53,6 +52,7 @@
             this.UpdateDrvFR = new System.Windows.Forms.Button();
             this.UpdateFirmwareTimer = new System.Windows.Forms.Timer(this.components);
             this.AdditionalParams = new System.Windows.Forms.Button();
+            this.Regsvr = new System.Windows.Forms.Button();
             this.TabControl.SuspendLayout();
             this.KKMPage.SuspendLayout();
             this.TerminalPage.SuspendLayout();
@@ -196,7 +196,6 @@
             this.TerminalPage.Controls.Add(this.SettingConnection);
             this.TerminalPage.Controls.Add(this.VerifyResults);
             this.TerminalPage.Controls.Add(this.TerminalResult);
-            this.TerminalPage.Controls.Add(this.Regsvr);
             this.TerminalPage.Location = new System.Drawing.Point(4, 22);
             this.TerminalPage.Name = "TerminalPage";
             this.TerminalPage.Padding = new System.Windows.Forms.Padding(3);
@@ -209,7 +208,7 @@
             // 
             this.SettingConnection.BackColor = System.Drawing.Color.Transparent;
             this.SettingConnection.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.SettingConnection.Location = new System.Drawing.Point(178, 35);
+            this.SettingConnection.Location = new System.Drawing.Point(180, 6);
             this.SettingConnection.Name = "SettingConnection";
             this.SettingConnection.Size = new System.Drawing.Size(149, 23);
             this.SettingConnection.TabIndex = 18;
@@ -221,7 +220,7 @@
             // 
             this.VerifyResults.BackColor = System.Drawing.Color.Transparent;
             this.VerifyResults.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.VerifyResults.Location = new System.Drawing.Point(178, 6);
+            this.VerifyResults.Location = new System.Drawing.Point(8, 6);
             this.VerifyResults.Name = "VerifyResults";
             this.VerifyResults.Size = new System.Drawing.Size(149, 23);
             this.VerifyResults.TabIndex = 17;
@@ -239,20 +238,9 @@
             this.TerminalResult.Size = new System.Drawing.Size(322, 20);
             this.TerminalResult.TabIndex = 16;
             // 
-            // Regsvr
-            // 
-            this.Regsvr.BackColor = System.Drawing.Color.Transparent;
-            this.Regsvr.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Regsvr.Location = new System.Drawing.Point(5, 6);
-            this.Regsvr.Name = "Regsvr";
-            this.Regsvr.Size = new System.Drawing.Size(149, 23);
-            this.Regsvr.TabIndex = 15;
-            this.Regsvr.Text = "Регистрация библиотек";
-            this.Regsvr.UseVisualStyleBackColor = false;
-            this.Regsvr.Click += new System.EventHandler(this.Regsvr_Click);
-            // 
             // AdminPage
             // 
+            this.AdminPage.Controls.Add(this.Regsvr);
             this.AdminPage.Controls.Add(this.AdminResult);
             this.AdminPage.Controls.Add(this.MakeSettings);
             this.AdminPage.Controls.Add(this.OfdConnect);
@@ -339,6 +327,18 @@
             this.AdditionalParams.UseVisualStyleBackColor = false;
             this.AdditionalParams.Click += new System.EventHandler(this.AdditionalParams_Click);
             // 
+            // Regsvr
+            // 
+            this.Regsvr.BackColor = System.Drawing.Color.Transparent;
+            this.Regsvr.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Regsvr.Location = new System.Drawing.Point(5, 64);
+            this.Regsvr.Name = "Regsvr";
+            this.Regsvr.Size = new System.Drawing.Size(149, 23);
+            this.Regsvr.TabIndex = 22;
+            this.Regsvr.Text = "Регистрация библиотек";
+            this.Regsvr.UseVisualStyleBackColor = false;
+            this.Regsvr.Click += new System.EventHandler(this.Regsvr_Click);
+            // 
             // CustomizationRMKForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -375,7 +375,6 @@
         private System.Windows.Forms.Timer UpdateFirmwareTimer;
         private System.Windows.Forms.Button FirmwareNotKey;
         private System.Windows.Forms.TextBox TerminalResult;
-        private System.Windows.Forms.Button Regsvr;
         private System.Windows.Forms.Button VerifyResults;
         private System.Windows.Forms.Button SettingConnection;
         private System.Windows.Forms.TabPage AdminPage;
@@ -387,6 +386,7 @@
         private System.Windows.Forms.Button RebootKKM;
         private System.Windows.Forms.Button ContinuePrint;
         private System.Windows.Forms.Button AdditionalParams;
+        private System.Windows.Forms.Button Regsvr;
     }
 }
 

@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Timers;
-using System.Windows.Forms;
+﻿using Customization_RMK;
 using DrvFRLib;
-using System.IO;
-using System.Threading;
-using System.Diagnostics;
-using System.IO.Ports;
-using System.ServiceProcess;
+using System;
+using System.Data;
 using System.Data.OleDb;
-using System.Security.Principal;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.IO.Ports;
+using System.Linq;
 using System.Net;
+using System.Security.Principal;
+using System.ServiceProcess;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace CustomizationRMKForm
 {
@@ -66,26 +63,26 @@ namespace CustomizationRMKForm
                     }
                 }
             }
-            
+
             if (VersionDrvFR == "4.14.0.803")
             {
-                UpdateDrvFR.Enabled = false;
+                //UpdateDrvFR.Enabled = false;
             }
             if (!IsRunAsAdmin())
             {
-                StatickIP.Enabled    = false;
-                OfdConnect.Enabled   = false;
+                StatickIP.Enabled = false;
+                OfdConnect.Enabled = false;
                 MakeSettings.Enabled = false;
-                Regsvr.Enabled       = false;
-                UpdateDrvFR.Enabled  = false;
-                AdminPage.Parent     = null;
+                Regsvr.Enabled = false;
+                UpdateDrvFR.Enabled = false;
+                AdminPage.Parent = null;
             }
         }
         private void UpdateResult() //Функция вывода информации о выполнении команды
         {
             tbResult.Text = string.Format($"{Driver.ResultCode}, {Driver.ResultCodeDescription}");
         }
-        
+
         private void ShowProperties_Click(object sender, EventArgs e) //Кнопка "Свойства"
         {
             UpdateFirmwareTimer.Stop();
@@ -96,12 +93,12 @@ namespace CustomizationRMKForm
         private void CollectionData_Click(object sender, EventArgs e) // Кнопка "Сбор данных"
         {
             UpdateFirmwareTimer.Stop();
-            Driver.ComputerName      = "192.168.137.111";
-            Driver.ProtocolType      = 0;
-            Driver.ConnectionType    = 6;
-            Driver.TCPPort           = 7778;
-            Driver.Timeout           = 1000;
-            Driver.IPAddress         = "192.168.137.111";
+            Driver.ComputerName = "192.168.137.111";
+            Driver.ProtocolType = 0;
+            Driver.ConnectionType = 6;
+            Driver.TCPPort = 7778;
+            Driver.Timeout = 1000;
+            Driver.IPAddress = "192.168.137.111";
             Driver.GetECRStatus();
             if (Driver.ResultCode == 0)
             {
@@ -161,14 +158,14 @@ namespace CustomizationRMKForm
         private void ReadTable() //Функция чтения таблиц
         {
             Driver.GetFieldStruct();
-            Driver.TableNumber   = 18;
-            Driver.RowNumber     = 1;
-            Driver.FieldNumber   = 7;
+            Driver.TableNumber = 18;
+            Driver.RowNumber = 1;
+            Driver.FieldNumber = 7;
             Driver.ReadTable();
             Organization = Driver.ValueOfFieldString;
-            Driver.TableNumber   = 18;
-            Driver.RowNumber     = 1;
-            Driver.FieldNumber   = 9;
+            Driver.TableNumber = 18;
+            Driver.RowNumber = 1;
+            Driver.FieldNumber = 9;
             Driver.ReadTable();
             Adress = Driver.ValueOfFieldString;
         }
@@ -192,8 +189,8 @@ namespace CustomizationRMKForm
                 Driver.UpdateFirmwareMethod = 0;
                 Driver.FileName = NewPatch;
                 Driver.UpdateFirmware();
-                Firmware.Enabled         = false;
-                FirmwareNotKey.Enabled   = false;
+                Firmware.Enabled = false;
+                FirmwareNotKey.Enabled = false;
                 UpdateFirmwareTimer.Start();
             }
             else
@@ -318,7 +315,7 @@ namespace CustomizationRMKForm
         private void StatickIP_Click(object sender, EventArgs e) // Кнопка "Установить IP Адрес"
         {
             Process StatickIP = new Process();
-            StatickIP.StartInfo.Arguments = @"$var1 = Get-NetAdapter -interfaceDescription *'Remote NDIS based Internet Sharing Device'* | select -expand ifIndex" + 
+            StatickIP.StartInfo.Arguments = @"$var1 = Get-NetAdapter -interfaceDescription *'Remote NDIS based Internet Sharing Device'* | select -expand ifIndex" +
                                     "\r\n" + "New-NetIPAddress -interfaceIndex $var1 -IPAddress 192.168.137.1 -PrefixLength 24";
             StatickIP.StartInfo.FileName = @"powershell";
             try
@@ -398,7 +395,7 @@ namespace CustomizationRMKForm
                 string[] ports = SerialPort.GetPortNames();
                 for (int i = 0; i < ports.Count(); i++)
                 {
-                    string PortNumbrer = ports[i].Replace("COM","");
+                    string PortNumbrer = ports[i].Replace("COM", "");
                     string PinpadCom = "ComPort=" + PortNumbrer + "\r\nPrinterEnd=01\r\nSpeed=115200\r\nShowScreens=1\r\nNewProtocol=1";
                     File.WriteAllText(@"C:\sc552\pinpad.ini", PinpadCom);
                     PCreate.Start();
@@ -455,14 +452,14 @@ namespace CustomizationRMKForm
                 if (IdPvz != "" && StrGuid != "" && OrganizationDB != "")
                 {
                     string[] Users = Directory.GetDirectories("C:\\Users\\");
-                    string[] UsersArray = { 
-                        @"C:\Users\All Users", 
+                    string[] UsersArray = {
+                        @"C:\Users\All Users",
                         @"C:\Users\Default",
-                        @"C:\Users\Default User", 
-                        @"C:\Users\Public", 
-                        @"C:\Users\Администратор", 
-                        @"C:\Users\Administrator", 
-                        @"C:\Users\AdminPickup", 
+                        @"C:\Users\Default User",
+                        @"C:\Users\Public",
+                        @"C:\Users\Администратор",
+                        @"C:\Users\Administrator",
+                        @"C:\Users\AdminPickup",
                         @"C:\Users\Все пользователи" };
                     Users = (from x in Users where !UsersArray.Contains(x) select x).ToArray();
                     string StringFileGuid =
@@ -527,11 +524,6 @@ namespace CustomizationRMKForm
         {
             string DrvFRPatchShara = @"\\office\service\LanDesk\Soft\Softnolandesk\Тест драйвера ФР\DrvFR_4.14_803.exe";
             string DrvFRPatch = @"C:\Files\DrvFR_4.14_803.exe";
-            string DrvFRDir = @"C:\Files";
-            if (!Directory.Exists(DrvFRDir))
-            {
-                Directory.CreateDirectory(DrvFRDir);
-            }
             if (File.Exists(DrvFRPatch))
             {
                 Process.Start(DrvFRPatch);
@@ -540,8 +532,8 @@ namespace CustomizationRMKForm
             {
                 if (File.Exists(DrvFRPatchShara))
                 {
-                    File.Copy(DrvFRPatchShara, DrvFRPatch, true);
-                    Process.Start(DrvFRPatch);
+                    Downloader Downloader = new Downloader();
+                    Downloader.Show();
                 }
                 else
                 {
@@ -565,6 +557,7 @@ namespace CustomizationRMKForm
         private void AdditionalParams_Click(object sender, EventArgs e) //Кнопка "Доп. параметры"
         {
             Driver.ShowAdditionalParams();
+            UpdateResult();
         }
     }
 }
