@@ -52,6 +52,7 @@
             this.StatickIP = new System.Windows.Forms.Button();
             this.UpdateDrvFR = new System.Windows.Forms.Button();
             this.UpdateFirmwareTimer = new System.Windows.Forms.Timer(this.components);
+            this.AdditionalParams = new System.Windows.Forms.Button();
             this.TabControl.SuspendLayout();
             this.KKMPage.SuspendLayout();
             this.TerminalPage.SuspendLayout();
@@ -129,6 +130,7 @@
             // 
             // KKMPage
             // 
+            this.KKMPage.Controls.Add(this.AdditionalParams);
             this.KKMPage.Controls.Add(this.ContinuePrint);
             this.KKMPage.Controls.Add(this.RebootKKM);
             this.KKMPage.Controls.Add(this.FirmwareNotKey);
@@ -325,6 +327,18 @@
             this.UpdateFirmwareTimer.Interval = 200;
             this.UpdateFirmwareTimer.Tick += new System.EventHandler(this.UpdateFirmwareTimer_Tick);
             // 
+            // AdditionalParams
+            // 
+            this.AdditionalParams.BackColor = System.Drawing.Color.Transparent;
+            this.AdditionalParams.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.AdditionalParams.Location = new System.Drawing.Point(178, 93);
+            this.AdditionalParams.Name = "AdditionalParams";
+            this.AdditionalParams.Size = new System.Drawing.Size(149, 23);
+            this.AdditionalParams.TabIndex = 15;
+            this.AdditionalParams.Text = "Доп. параметры";
+            this.AdditionalParams.UseVisualStyleBackColor = false;
+            this.AdditionalParams.Click += new System.EventHandler(this.AdditionalParams_Click);
+            // 
             // CustomizationRMKForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -372,6 +386,7 @@
         private System.Windows.Forms.Button UpdateDrvFR;
         private System.Windows.Forms.Button RebootKKM;
         private System.Windows.Forms.Button ContinuePrint;
+        private System.Windows.Forms.Button AdditionalParams;
     }
 }
 

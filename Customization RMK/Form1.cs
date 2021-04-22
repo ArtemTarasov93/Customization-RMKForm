@@ -73,12 +73,12 @@ namespace CustomizationRMKForm
             }
             if (!IsRunAsAdmin())
             {
-                StatickIP.Enabled = false;
-                OfdConnect.Enabled = false;
+                StatickIP.Enabled    = false;
+                OfdConnect.Enabled   = false;
                 MakeSettings.Enabled = false;
-                Regsvr.Enabled = false;
-                UpdateDrvFR.Enabled = false;
-                AdminPage.Parent = null;
+                Regsvr.Enabled       = false;
+                UpdateDrvFR.Enabled  = false;
+                AdminPage.Parent     = null;
             }
         }
         private void UpdateResult() //Функция вывода информации о выполнении команды
@@ -96,12 +96,12 @@ namespace CustomizationRMKForm
         private void CollectionData_Click(object sender, EventArgs e) // Кнопка "Сбор данных"
         {
             UpdateFirmwareTimer.Stop();
-            Driver.ComputerName = "192.168.137.111";
-            Driver.ProtocolType = 0;
-            Driver.ConnectionType = 6;
-            Driver.TCPPort = 7778;
-            Driver.Timeout = 1000;
-            Driver.IPAddress = "192.168.137.111";
+            Driver.ComputerName      = "192.168.137.111";
+            Driver.ProtocolType      = 0;
+            Driver.ConnectionType    = 6;
+            Driver.TCPPort           = 7778;
+            Driver.Timeout           = 1000;
+            Driver.IPAddress         = "192.168.137.111";
             Driver.GetECRStatus();
             if (Driver.ResultCode == 0)
             {
@@ -161,14 +161,14 @@ namespace CustomizationRMKForm
         private void ReadTable() //Функция чтения таблиц
         {
             Driver.GetFieldStruct();
-            Driver.TableNumber = 18;
-            Driver.RowNumber = 1;
-            Driver.FieldNumber = 7;
+            Driver.TableNumber   = 18;
+            Driver.RowNumber     = 1;
+            Driver.FieldNumber   = 7;
             Driver.ReadTable();
             Organization = Driver.ValueOfFieldString;
-            Driver.TableNumber = 18;
-            Driver.RowNumber = 1;
-            Driver.FieldNumber = 9;
+            Driver.TableNumber   = 18;
+            Driver.RowNumber     = 1;
+            Driver.FieldNumber   = 9;
             Driver.ReadTable();
             Adress = Driver.ValueOfFieldString;
         }
@@ -192,8 +192,8 @@ namespace CustomizationRMKForm
                 Driver.UpdateFirmwareMethod = 0;
                 Driver.FileName = NewPatch;
                 Driver.UpdateFirmware();
-                Firmware.Enabled = false;
-                FirmwareNotKey.Enabled = false;
+                Firmware.Enabled         = false;
+                FirmwareNotKey.Enabled   = false;
                 UpdateFirmwareTimer.Start();
             }
             else
@@ -455,7 +455,15 @@ namespace CustomizationRMKForm
                 if (IdPvz != "" && StrGuid != "" && OrganizationDB != "")
                 {
                     string[] Users = Directory.GetDirectories("C:\\Users\\");
-                    string[] UsersArray = { @"C:\Users\All Users", @"C:\Users\Default", @"C:\Users\Default User", @"C:\Users\Public", @"C:\Users\Администратор", @"C:\Users\Administrator", @"C:\Users\AdminPickup", @"C:\Users\Все пользователи" };
+                    string[] UsersArray = { 
+                        @"C:\Users\All Users", 
+                        @"C:\Users\Default",
+                        @"C:\Users\Default User", 
+                        @"C:\Users\Public", 
+                        @"C:\Users\Администратор", 
+                        @"C:\Users\Administrator", 
+                        @"C:\Users\AdminPickup", 
+                        @"C:\Users\Все пользователи" };
                     Users = (from x in Users where !UsersArray.Contains(x) select x).ToArray();
                     string StringFileGuid =
                         "{\r\n" +
@@ -517,19 +525,28 @@ namespace CustomizationRMKForm
 
         private void UpdateDrvFR_Click(object sender, EventArgs e) //Кнопка "Обновить драйвер"
         {
-            string DrvFRPatch = @"\\office\service\LanDesk\Soft\Softnolandesk\Тест драйвера ФР\DrvFR_4.14_803.exe";
+            string DrvFRPatchShara = @"\\office\service\LanDesk\Soft\Softnolandesk\Тест драйвера ФР\DrvFR_4.14_803.exe";
+            string DrvFRPatch = @"C:\Files\DrvFR_4.14_803.exe";
+            string DrvFRDir = @"C:\Files";
+            if (!Directory.Exists(DrvFRDir))
+            {
+                Directory.CreateDirectory(DrvFRDir);
+            }
             if (File.Exists(DrvFRPatch))
             {
-                if (!Directory.Exists(@"C:\Files"))
-                {
-                    Directory.CreateDirectory(@"C:\Files");
-                }
-                File.Copy(DrvFRPatch, @"C:\Files\DrvFR_4.14_803.exe", true);
-                Process.Start(@"C:\Files\DrvFR_4.14_803.exe");
+                Process.Start(DrvFRPatch);
             }
             else
             {
-                AdminResult.Text = string.Format("Нет доступа к шаре");
+                if (File.Exists(DrvFRPatchShara))
+                {
+                    File.Copy(DrvFRPatchShara, DrvFRPatch, true);
+                    Process.Start(DrvFRPatch);
+                }
+                else
+                {
+                    AdminResult.Text = string.Format("Нет доступа к шаре");
+                }
             }
         }
 
@@ -543,6 +560,11 @@ namespace CustomizationRMKForm
         {
             Driver.ContinuePrint();
             UpdateResult();
+        }
+
+        private void AdditionalParams_Click(object sender, EventArgs e) //Кнопка "Доп. параметры"
+        {
+            Driver.ShowAdditionalParams();
         }
     }
 }
