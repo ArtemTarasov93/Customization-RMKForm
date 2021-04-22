@@ -29,16 +29,16 @@ namespace Customization_RMK
         /// </summary>
         private void InitializeComponent()
         {
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.CopyProgress = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // progressBar1
+            // CopyProgress
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 66);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(322, 23);
-            this.progressBar1.TabIndex = 0;
+            this.CopyProgress.Location = new System.Drawing.Point(12, 66);
+            this.CopyProgress.Name = "CopyProgress";
+            this.CopyProgress.Size = new System.Drawing.Size(322, 23);
+            this.CopyProgress.TabIndex = 0;
             // 
             // label1
             // 
@@ -56,7 +56,7 @@ namespace Customization_RMK
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(346, 99);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.CopyProgress);
             this.Name = "Downloader";
             this.Text = "Downloader";
             this.Load += new System.EventHandler(this.Downloader_Load);
@@ -67,7 +67,7 @@ namespace Customization_RMK
 
         #endregion
 
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar CopyProgress;
         private System.Windows.Forms.Label label1;
     }
 }

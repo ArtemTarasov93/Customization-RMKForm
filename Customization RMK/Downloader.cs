@@ -57,7 +57,7 @@ namespace Customization_RMK
 
                             BeginInvoke(new Action<int>(perc =>
                             {
-                                progressBar1.Value = perc;
+                                CopyProgress.Value = perc;
                             }), percent);
                         }
                     }
