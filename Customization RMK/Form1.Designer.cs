@@ -36,6 +36,8 @@
             this.Licence = new System.Windows.Forms.Button();
             this.TabControl = new System.Windows.Forms.TabControl();
             this.KKMPage = new System.Windows.Forms.TabPage();
+            this.AvansButton = new System.Windows.Forms.Button();
+            this.AdditionalParams = new System.Windows.Forms.Button();
             this.ContinuePrint = new System.Windows.Forms.Button();
             this.RebootKKM = new System.Windows.Forms.Button();
             this.FirmwareNotKey = new System.Windows.Forms.Button();
@@ -45,14 +47,13 @@
             this.VerifyResults = new System.Windows.Forms.Button();
             this.TerminalResult = new System.Windows.Forms.TextBox();
             this.AdminPage = new System.Windows.Forms.TabPage();
+            this.Regsvr = new System.Windows.Forms.Button();
             this.AdminResult = new System.Windows.Forms.TextBox();
             this.MakeSettings = new System.Windows.Forms.Button();
             this.OfdConnect = new System.Windows.Forms.Button();
             this.StatickIP = new System.Windows.Forms.Button();
             this.UpdateDrvFR = new System.Windows.Forms.Button();
             this.UpdateFirmwareTimer = new System.Windows.Forms.Timer(this.components);
-            this.AdditionalParams = new System.Windows.Forms.Button();
-            this.Regsvr = new System.Windows.Forms.Button();
             this.TabControl.SuspendLayout();
             this.KKMPage.SuspendLayout();
             this.TerminalPage.SuspendLayout();
@@ -75,7 +76,7 @@
             this.PrintStringOut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PrintStringOut.Font = new System.Drawing.Font("Lucida Fax", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PrintStringOut.Location = new System.Drawing.Point(5, 127);
+            this.PrintStringOut.Location = new System.Drawing.Point(5, 150);
             this.PrintStringOut.Multiline = true;
             this.PrintStringOut.Name = "PrintStringOut";
             this.PrintStringOut.Size = new System.Drawing.Size(322, 156);
@@ -125,11 +126,12 @@
             this.TabControl.Location = new System.Drawing.Point(0, 0);
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(343, 341);
+            this.TabControl.Size = new System.Drawing.Size(343, 364);
             this.TabControl.TabIndex = 11;
             // 
             // KKMPage
             // 
+            this.KKMPage.Controls.Add(this.AvansButton);
             this.KKMPage.Controls.Add(this.AdditionalParams);
             this.KKMPage.Controls.Add(this.ContinuePrint);
             this.KKMPage.Controls.Add(this.RebootKKM);
@@ -143,10 +145,34 @@
             this.KKMPage.Location = new System.Drawing.Point(4, 22);
             this.KKMPage.Name = "KKMPage";
             this.KKMPage.Padding = new System.Windows.Forms.Padding(3);
-            this.KKMPage.Size = new System.Drawing.Size(335, 315);
+            this.KKMPage.Size = new System.Drawing.Size(335, 338);
             this.KKMPage.TabIndex = 0;
             this.KKMPage.Text = "ККМ";
             this.KKMPage.UseVisualStyleBackColor = true;
+            // 
+            // AvansButton
+            // 
+            this.AvansButton.Enabled = false;
+            this.AvansButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.AvansButton.Location = new System.Drawing.Point(5, 122);
+            this.AvansButton.Name = "AvansButton";
+            this.AvansButton.Size = new System.Drawing.Size(149, 23);
+            this.AvansButton.TabIndex = 16;
+            this.AvansButton.Text = "Добавить аванс";
+            this.AvansButton.UseVisualStyleBackColor = true;
+            this.AvansButton.Click += new System.EventHandler(this.AvansButton_Click);
+            // 
+            // AdditionalParams
+            // 
+            this.AdditionalParams.BackColor = System.Drawing.Color.Transparent;
+            this.AdditionalParams.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.AdditionalParams.Location = new System.Drawing.Point(178, 93);
+            this.AdditionalParams.Name = "AdditionalParams";
+            this.AdditionalParams.Size = new System.Drawing.Size(149, 23);
+            this.AdditionalParams.TabIndex = 15;
+            this.AdditionalParams.Text = "Доп. параметры";
+            this.AdditionalParams.UseVisualStyleBackColor = false;
+            this.AdditionalParams.Click += new System.EventHandler(this.AdditionalParams_Click);
             // 
             // ContinuePrint
             // 
@@ -186,7 +212,7 @@
             // 
             this.tbResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbResult.Location = new System.Drawing.Point(5, 289);
+            this.tbResult.Location = new System.Drawing.Point(5, 312);
             this.tbResult.Name = "tbResult";
             this.tbResult.Size = new System.Drawing.Size(322, 20);
             this.tbResult.TabIndex = 7;
@@ -199,7 +225,7 @@
             this.TerminalPage.Location = new System.Drawing.Point(4, 22);
             this.TerminalPage.Name = "TerminalPage";
             this.TerminalPage.Padding = new System.Windows.Forms.Padding(3);
-            this.TerminalPage.Size = new System.Drawing.Size(335, 315);
+            this.TerminalPage.Size = new System.Drawing.Size(335, 338);
             this.TerminalPage.TabIndex = 1;
             this.TerminalPage.Text = "Эквайринг";
             this.TerminalPage.UseVisualStyleBackColor = true;
@@ -248,10 +274,22 @@
             this.AdminPage.Controls.Add(this.UpdateDrvFR);
             this.AdminPage.Location = new System.Drawing.Point(4, 22);
             this.AdminPage.Name = "AdminPage";
-            this.AdminPage.Size = new System.Drawing.Size(335, 315);
+            this.AdminPage.Size = new System.Drawing.Size(335, 338);
             this.AdminPage.TabIndex = 2;
             this.AdminPage.Text = "Админ";
             this.AdminPage.UseVisualStyleBackColor = true;
+            // 
+            // Regsvr
+            // 
+            this.Regsvr.BackColor = System.Drawing.Color.Transparent;
+            this.Regsvr.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Regsvr.Location = new System.Drawing.Point(5, 64);
+            this.Regsvr.Name = "Regsvr";
+            this.Regsvr.Size = new System.Drawing.Size(149, 23);
+            this.Regsvr.TabIndex = 22;
+            this.Regsvr.Text = "Регистрация библиотек";
+            this.Regsvr.UseVisualStyleBackColor = false;
+            this.Regsvr.Click += new System.EventHandler(this.Regsvr_Click);
             // 
             // AdminResult
             // 
@@ -315,35 +353,11 @@
             this.UpdateFirmwareTimer.Interval = 200;
             this.UpdateFirmwareTimer.Tick += new System.EventHandler(this.UpdateFirmwareTimer_Tick);
             // 
-            // AdditionalParams
-            // 
-            this.AdditionalParams.BackColor = System.Drawing.Color.Transparent;
-            this.AdditionalParams.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.AdditionalParams.Location = new System.Drawing.Point(178, 93);
-            this.AdditionalParams.Name = "AdditionalParams";
-            this.AdditionalParams.Size = new System.Drawing.Size(149, 23);
-            this.AdditionalParams.TabIndex = 15;
-            this.AdditionalParams.Text = "Доп. параметры";
-            this.AdditionalParams.UseVisualStyleBackColor = false;
-            this.AdditionalParams.Click += new System.EventHandler(this.AdditionalParams_Click);
-            // 
-            // Regsvr
-            // 
-            this.Regsvr.BackColor = System.Drawing.Color.Transparent;
-            this.Regsvr.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Regsvr.Location = new System.Drawing.Point(5, 64);
-            this.Regsvr.Name = "Regsvr";
-            this.Regsvr.Size = new System.Drawing.Size(149, 23);
-            this.Regsvr.TabIndex = 22;
-            this.Regsvr.Text = "Регистрация библиотек";
-            this.Regsvr.UseVisualStyleBackColor = false;
-            this.Regsvr.Click += new System.EventHandler(this.Regsvr_Click);
-            // 
             // CustomizationRMKForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(349, 340);
+            this.ClientSize = new System.Drawing.Size(342, 364);
             this.Controls.Add(this.TabControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -387,6 +401,7 @@
         private System.Windows.Forms.Button ContinuePrint;
         private System.Windows.Forms.Button AdditionalParams;
         private System.Windows.Forms.Button Regsvr;
+        private System.Windows.Forms.Button AvansButton;
     }
 }
 

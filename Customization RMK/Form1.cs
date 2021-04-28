@@ -18,7 +18,7 @@ namespace CustomizationRMKForm
 {
     public partial class CustomizationRMKForm : Form
     {
-        const string CustomizationRMKVersion = "1.0.1.3";
+        const string CustomizationRMKVersion = "1.0.1.4";
         const string PatchFirmwareKey = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM\firmware\upd_app_key.bin";
         const string NewPatchFirmwareKey = @"C:\Files\KKM\upd_app_key.bin";
         const string PatchFirmware = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM\firmware\upd_app.bin";
@@ -30,6 +30,7 @@ namespace CustomizationRMKForm
         string SerialNumber;
         string Organization = "";
         string Adress = "";
+        string Avans = "";
         string IdPvz = "";
         string StrGuid = "";
         string OrganizationDB = "";
@@ -114,8 +115,13 @@ namespace CustomizationRMKForm
                     $"\r\nЗН: {SerialNumber}" +
                     $"\r\nПодрежим: {Driver.ECRAdvancedModeDescription}" +
                     $"\r\nЧеков не передано: {Driver.MessageCount}" +
+                    $"\r\nСтрока аванса: {Avans}" +
                     $"\r\nОрганизация: {Organization}" +
                     $"\r\nАдрес: {Adress}");
+            }
+            if (Avans != "ПРЕДВАРИТЕЛЬНАЯ ОПЛАТА (АВАНС)")
+            {
+                AvansButton.Enabled = true;
             }
             Licence.Enabled = true;
             if (Driver.ECRBuild != 19018)
@@ -168,6 +174,11 @@ namespace CustomizationRMKForm
             Driver.FieldNumber = 9;
             Driver.ReadTable();
             Adress = Driver.ValueOfFieldString;
+            Driver.TableNumber = 5;
+            Driver.RowNumber = 14;
+            Driver.FieldNumber = 1;
+            Driver.ReadTable();
+            Avans = Driver.ValueOfFieldString;
         }
         private void Firmware_Click(object sender, EventArgs e) //Кнопка "Прошивка с ключами"
         {
@@ -558,6 +569,15 @@ namespace CustomizationRMKForm
         {
             Driver.ShowAdditionalParams();
             UpdateResult();
+        }
+
+        private void AvansButton_Click(object sender, EventArgs e) //Кнопка "Добавить аванс"
+        {
+            Driver.ValueOfFieldString = "ПРЕДВАРИТЕЛЬНАЯ ОПЛАТА (АВАНС)";
+            Driver.WriteTable();
+            Driver.RebootKKT();
+            UpdateResult();
+            AvansButton.Enabled = false;
         }
     }
 }
