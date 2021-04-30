@@ -18,15 +18,15 @@ namespace CustomizationRMKForm
 {
     public partial class CustomizationRMKForm : Form
     {
-        const string CustomizationRMKVersion = "1.0.1.4";
-        const string PatchFirmwareKey = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM\firmware\upd_app_key.bin";
+        const string CustomizationRMKVersion = "1.0.1.5";
+        const string PatchFirmwareKey = @"\\office.lamoda.ru\service\LanDesk\Soft\Softnolandesk\KKM\firmware\upd_app_key.bin";
         const string NewPatchFirmwareKey = @"C:\Files\KKM\upd_app_key.bin";
-        const string PatchFirmware = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM\firmware\upd_app.bin";
+        const string PatchFirmware = @"\\office.lamoda.ru\service\LanDesk\Soft\Softnolandesk\KKM\firmware\upd_app.bin";
         const string NewPatchFirmware = @"C:\Files\KKM\upd_app.bin";
         const string DirNewPatch = @"C:\Files\KKM";
-        const string OfdKKTProfiles = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM\ofd\KKTProfiles.ini";
-        const string OfdSettings = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM\ofd\Settings.ini";
-        const string CustomizationRMKPatch = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM\Настройка РМК.exe";
+        const string OfdKKTProfiles = @"\\office.lamoda.ru\service\LanDesk\Soft\Softnolandesk\KKM\ofd\KKTProfiles.ini";
+        const string OfdSettings = @"\\office.lamoda.ru\service\LanDesk\Soft\Softnolandesk\KKM\ofd\Settings.ini";
+        const string CustomizationRMKPatch = @"\\office.lamoda.ru\service\LanDesk\Soft\Softnolandesk\KKM\Настройка РМК.exe";
         string SerialNumber;
         string Organization = "";
         string Adress = "";
@@ -35,8 +35,8 @@ namespace CustomizationRMKForm
         string StrGuid = "";
         string OrganizationDB = "";
         const string PFile = @"C:\sc552\p";
-        const string Shara = @"\\office\service\LanDesk\Soft\Softnolandesk\KKM";
-        readonly OleDbConnection OleDbConnection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=\\office\service\LanDesk\Soft\Softnolandesk\KKM\DB\DatabaseKKM.mdb");
+        const string Shara = @"\\office.lamoda.ru\service\LanDesk\Soft\Softnolandesk\KKM";
+        readonly OleDbConnection OleDbConnection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=\\office.lamoda.ru\service\LanDesk\Soft\Softnolandesk\KKM\DB\DatabaseKKM.mdb");
         readonly string ComputerName = Dns.GetHostName();
         readonly string VersionDrvFR = FileVersionInfo.GetVersionInfo(@"C:\Program Files (x86)\SHTRIH-M\DrvFR 4.14\Bin\DrvFRTst.exe").FileVersion;
         public CustomizationRMKForm()
@@ -533,7 +533,7 @@ namespace CustomizationRMKForm
 
         private void UpdateDrvFR_Click(object sender, EventArgs e) //Кнопка "Обновить драйвер"
         {
-            string DrvFRPatchShara = @"\\office\service\LanDesk\Soft\Softnolandesk\Тест драйвера ФР\DrvFR_4.14_803.exe";
+            string DrvFRPatchShara = @"\\office.lamoda.ru\service\LanDesk\Soft\Softnolandesk\Тест драйвера ФР\DrvFR_4.14_803.exe";
             string DrvFRPatch = @"C:\Files\DrvFR_4.14_803.exe";
             if (File.Exists(DrvFRPatch))
             {

@@ -18,7 +18,7 @@ namespace UpdateCustomizationRMK
                 Directory.CreateDirectory("C:\\Files");
             }
             Thread.Sleep(2000);
-            File.Copy(@"\\office\service\LanDesk\Soft\Softnolandesk\KKM\Настройка РМК.exe", @"C:\Files\Настройка РМК.exe", true);
+            File.Copy(@"\\office.lamoda.ru\service\LanDesk\Soft\Softnolandesk\KKM\Настройка РМК.exe", @"C:\Files\Настройка РМК.exe", true);
             Process.Start(@"C:\Files\Настройка РМК.exe");
         }
     }
