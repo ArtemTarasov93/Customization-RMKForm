@@ -358,12 +358,12 @@ namespace CustomizationRMKForm
                 }
                 catch
                 {
-                    TerminalResult.Text = string.Format("Ошибка регистрации библиотек");
+                    AdminResult.Text = string.Format("Ошибка регистрации библиотек");
                 }
             }
             else
             {
-                TerminalResult.Text = string.Format("Нет библиотеки на 3 параметра в папке sc552");
+                AdminResult.Text = string.Format("Нет библиотеки на 3 параметра в папке sc552");
             }
         }
 
