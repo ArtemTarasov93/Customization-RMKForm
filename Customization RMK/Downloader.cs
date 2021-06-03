@@ -21,6 +21,7 @@ namespace Customization_RMK
 
         async private void Downloader_Load(object sender, EventArgs e)
         {
+            ShowIcon = false;
             string DrvFRDir = @"C:\Files";
             string DrvFRPatchShara = @"\\office\service\LanDesk\Soft\Softnolandesk\Тест драйвера ФР\DrvFR_4.14_803.exe";
             string DrvFRPatch = @"C:\Files\DrvFR_4.14_803.exe";

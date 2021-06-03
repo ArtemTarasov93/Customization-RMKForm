@@ -35,18 +35,18 @@ namespace Customization_RMK
             // 
             // CopyProgress
             // 
-            this.CopyProgress.Location = new System.Drawing.Point(12, 66);
+            this.CopyProgress.Location = new System.Drawing.Point(12, 32);
             this.CopyProgress.Name = "CopyProgress";
-            this.CopyProgress.Size = new System.Drawing.Size(322, 23);
+            this.CopyProgress.Size = new System.Drawing.Size(322, 21);
             this.CopyProgress.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(80, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(294, 20);
+            this.label1.Size = new System.Drawing.Size(193, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Идет копирование файла. Ожидайте";
             // 
@@ -54,9 +54,10 @@ namespace Customization_RMK
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(346, 99);
+            this.ClientSize = new System.Drawing.Size(346, 62);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.CopyProgress);
+            this.MaximizeBox = false;
             this.Name = "Downloader";
             this.Text = "Downloader";
             this.Load += new System.EventHandler(this.Downloader_Load);

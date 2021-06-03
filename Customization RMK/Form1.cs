@@ -18,7 +18,7 @@ namespace CustomizationRMKForm
 {
     public partial class CustomizationRMKForm : Form
     {
-        const string CustomizationRMKVersion = "1.0.1.6";
+        const string CustomizationRMKVersion = "1.0.1.7";
         const string PatchFirmwareKey = @"\\office.lamoda.ru\service\LanDesk\Soft\Softnolandesk\KKM\firmware\upd_app_key.bin";
         const string NewPatchFirmwareKey = @"C:\Files\KKM\upd_app_key.bin";
         const string PatchFirmware = @"\\office.lamoda.ru\service\LanDesk\Soft\Softnolandesk\KKM\firmware\upd_app.bin";
