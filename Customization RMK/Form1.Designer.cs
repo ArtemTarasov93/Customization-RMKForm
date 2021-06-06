@@ -40,7 +40,6 @@
             this.AdditionalParams = new System.Windows.Forms.Button();
             this.ContinuePrint = new System.Windows.Forms.Button();
             this.RebootKKM = new System.Windows.Forms.Button();
-            this.FirmwareNotKey = new System.Windows.Forms.Button();
             this.tbResult = new System.Windows.Forms.TextBox();
             this.TerminalPage = new System.Windows.Forms.TabPage();
             this.SettingConnection = new System.Windows.Forms.Button();
@@ -76,10 +75,10 @@
             this.PrintStringOut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PrintStringOut.Font = new System.Drawing.Font("Lucida Fax", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PrintStringOut.Location = new System.Drawing.Point(5, 158);
+            this.PrintStringOut.Location = new System.Drawing.Point(5, 122);
             this.PrintStringOut.Multiline = true;
             this.PrintStringOut.Name = "PrintStringOut";
-            this.PrintStringOut.Size = new System.Drawing.Size(326, 175);
+            this.PrintStringOut.Size = new System.Drawing.Size(322, 175);
             this.PrintStringOut.TabIndex = 6;
             // 
             // ShowProperties
@@ -102,7 +101,7 @@
             this.Firmware.Name = "Firmware";
             this.Firmware.Size = new System.Drawing.Size(149, 23);
             this.Firmware.TabIndex = 5;
-            this.Firmware.Text = "Прошивка с ключами";
+            this.Firmware.Text = "Обновление прошивки";
             this.Firmware.UseVisualStyleBackColor = true;
             this.Firmware.Click += new System.EventHandler(this.Firmware_Click);
             // 
@@ -126,7 +125,7 @@
             this.TabControl.Location = new System.Drawing.Point(0, 0);
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(347, 391);
+            this.TabControl.Size = new System.Drawing.Size(347, 355);
             this.TabControl.TabIndex = 11;
             // 
             // KKMPage
@@ -135,7 +134,6 @@
             this.KKMPage.Controls.Add(this.AdditionalParams);
             this.KKMPage.Controls.Add(this.ContinuePrint);
             this.KKMPage.Controls.Add(this.RebootKKM);
-            this.KKMPage.Controls.Add(this.FirmwareNotKey);
             this.KKMPage.Controls.Add(this.PrintStringOut);
             this.KKMPage.Controls.Add(this.ShowProperties);
             this.KKMPage.Controls.Add(this.tbResult);
@@ -145,7 +143,7 @@
             this.KKMPage.Location = new System.Drawing.Point(4, 22);
             this.KKMPage.Name = "KKMPage";
             this.KKMPage.Padding = new System.Windows.Forms.Padding(3);
-            this.KKMPage.Size = new System.Drawing.Size(339, 365);
+            this.KKMPage.Size = new System.Drawing.Size(339, 329);
             this.KKMPage.TabIndex = 0;
             this.KKMPage.Text = "ККМ";
             this.KKMPage.UseVisualStyleBackColor = true;
@@ -154,7 +152,7 @@
             // 
             this.AvansButton.Enabled = false;
             this.AvansButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.AvansButton.Location = new System.Drawing.Point(5, 122);
+            this.AvansButton.Location = new System.Drawing.Point(3, 93);
             this.AvansButton.Name = "AvansButton";
             this.AvansButton.Size = new System.Drawing.Size(149, 23);
             this.AvansButton.TabIndex = 16;
@@ -177,7 +175,7 @@
             // ContinuePrint
             // 
             this.ContinuePrint.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.ContinuePrint.Location = new System.Drawing.Point(5, 93);
+            this.ContinuePrint.Location = new System.Drawing.Point(3, 64);
             this.ContinuePrint.Name = "ContinuePrint";
             this.ContinuePrint.Size = new System.Drawing.Size(149, 23);
             this.ContinuePrint.TabIndex = 14;
@@ -188,7 +186,7 @@
             // RebootKKM
             // 
             this.RebootKKM.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.RebootKKM.Location = new System.Drawing.Point(5, 64);
+            this.RebootKKM.Location = new System.Drawing.Point(177, 64);
             this.RebootKKM.Name = "RebootKKM";
             this.RebootKKM.Size = new System.Drawing.Size(149, 23);
             this.RebootKKM.TabIndex = 13;
@@ -196,25 +194,13 @@
             this.RebootKKM.UseVisualStyleBackColor = true;
             this.RebootKKM.Click += new System.EventHandler(this.RebootKKM_Click);
             // 
-            // FirmwareNotKey
-            // 
-            this.FirmwareNotKey.Enabled = false;
-            this.FirmwareNotKey.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.FirmwareNotKey.Location = new System.Drawing.Point(178, 64);
-            this.FirmwareNotKey.Name = "FirmwareNotKey";
-            this.FirmwareNotKey.Size = new System.Drawing.Size(149, 23);
-            this.FirmwareNotKey.TabIndex = 12;
-            this.FirmwareNotKey.Text = "Прошивка без ключей";
-            this.FirmwareNotKey.UseVisualStyleBackColor = true;
-            this.FirmwareNotKey.Click += new System.EventHandler(this.FirmwareNotKey_Click);
-            // 
             // tbResult
             // 
             this.tbResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbResult.Location = new System.Drawing.Point(5, 339);
+            this.tbResult.Location = new System.Drawing.Point(5, 303);
             this.tbResult.Name = "tbResult";
-            this.tbResult.Size = new System.Drawing.Size(326, 20);
+            this.tbResult.Size = new System.Drawing.Size(321, 20);
             this.tbResult.TabIndex = 7;
             // 
             // TerminalPage
@@ -225,7 +211,7 @@
             this.TerminalPage.Location = new System.Drawing.Point(4, 22);
             this.TerminalPage.Name = "TerminalPage";
             this.TerminalPage.Padding = new System.Windows.Forms.Padding(3);
-            this.TerminalPage.Size = new System.Drawing.Size(339, 365);
+            this.TerminalPage.Size = new System.Drawing.Size(339, 329);
             this.TerminalPage.TabIndex = 1;
             this.TerminalPage.Text = "Эквайринг";
             this.TerminalPage.UseVisualStyleBackColor = true;
@@ -258,7 +244,7 @@
             // 
             this.TerminalResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TerminalResult.Location = new System.Drawing.Point(5, 339);
+            this.TerminalResult.Location = new System.Drawing.Point(5, 303);
             this.TerminalResult.Multiline = true;
             this.TerminalResult.Name = "TerminalResult";
             this.TerminalResult.Size = new System.Drawing.Size(326, 20);
@@ -274,7 +260,7 @@
             this.AdminPage.Controls.Add(this.UpdateDrvFR);
             this.AdminPage.Location = new System.Drawing.Point(4, 22);
             this.AdminPage.Name = "AdminPage";
-            this.AdminPage.Size = new System.Drawing.Size(339, 365);
+            this.AdminPage.Size = new System.Drawing.Size(339, 329);
             this.AdminPage.TabIndex = 2;
             this.AdminPage.Text = "Админ";
             this.AdminPage.UseVisualStyleBackColor = true;
@@ -295,7 +281,7 @@
             // 
             this.AdminResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.AdminResult.Location = new System.Drawing.Point(5, 339);
+            this.AdminResult.Location = new System.Drawing.Point(5, 303);
             this.AdminResult.Name = "AdminResult";
             this.AdminResult.Size = new System.Drawing.Size(326, 20);
             this.AdminResult.TabIndex = 21;
@@ -357,7 +343,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(342, 386);
+            this.ClientSize = new System.Drawing.Size(337, 354);
             this.Controls.Add(this.TabControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -387,7 +373,6 @@
         private System.Windows.Forms.TabPage TerminalPage;
         private System.Windows.Forms.TextBox tbResult;
         private System.Windows.Forms.Timer UpdateFirmwareTimer;
-        private System.Windows.Forms.Button FirmwareNotKey;
         private System.Windows.Forms.TextBox TerminalResult;
         private System.Windows.Forms.Button VerifyResults;
         private System.Windows.Forms.Button SettingConnection;

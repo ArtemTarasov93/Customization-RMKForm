@@ -18,7 +18,7 @@ namespace CustomizationRMKForm
 {
     public partial class CustomizationRMKForm : Form
     {
-        const string CustomizationRMKVersion = "1.0.1.7";
+        const string CustomizationRMKVersion = "1.0.1.8";
         const string PatchFirmwareKey = @"\\office.lamoda.ru\service\LanDesk\Soft\Softnolandesk\KKM\firmware\upd_app_key.bin";
         const string NewPatchFirmwareKey = @"C:\Files\KKM\upd_app_key.bin";
         const string PatchFirmware = @"\\office.lamoda.ru\service\LanDesk\Soft\Softnolandesk\KKM\firmware\upd_app.bin";
@@ -31,9 +31,11 @@ namespace CustomizationRMKForm
         string Organization = "";
         string Adress = "";
         string Avans = "";
+        string Uin = "";
         string IdPvz = "";
         string StrGuid = "";
         string OrganizationDB = "";
+        string FirmwareType = "";
         const string PFile = @"C:\sc552\p";
         const string Shara = @"\\office.lamoda.ru\service\LanDesk\Soft\Softnolandesk\KKM";
         readonly OleDbConnection OleDbConnection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=\\office.lamoda.ru\service\LanDesk\Soft\Softnolandesk\KKM\DB\DatabaseKKM.mdb");
@@ -107,9 +109,18 @@ namespace CustomizationRMKForm
                 SerialNumber = Driver.SerialNumber;
                 Driver.FNGetInfoExchangeStatus();
                 ReadTable();
+                if (Uin != "---")
+                {
+                    FirmwareType = "С ключами";
+                }
+                else
+                {
+                    FirmwareType = "Без ключей";
+                }
                 PrintStringOut.Text = string.Format(
                     $"Драйвер: {VersionDrvFR}" +
                     $"\r\nСборка ПО: {Driver.ECRBuild}" +
+                    $"\r\nПрошивка: {FirmwareType}" +
                     $"\r\nРежим: {Driver.ECRMode}, {Driver.ECRModeDescription} " +
                     $"\r\nМодель: {Driver.UDescription}" +
                     $"\r\nЗН: {SerialNumber}" +
@@ -133,7 +144,6 @@ namespace CustomizationRMKForm
                         if (VersionDrvFR == "4.14.0.803")
                         {
                             Firmware.Enabled = true;
-                            FirmwareNotKey.Enabled = true;
                         }
                         else
                         {
@@ -179,16 +189,24 @@ namespace CustomizationRMKForm
             Driver.FieldNumber = 1;
             Driver.ReadTable();
             Avans = Driver.ValueOfFieldString;
+            Driver.TableNumber = 23;
+            Driver.RowNumber = 1;
+            Driver.FieldNumber = 11;
+            Driver.ReadTable();
+            Uin = Driver.ValueOfFieldString;
         }
-        private void Firmware_Click(object sender, EventArgs e) //Кнопка "Прошивка с ключами"
+        private void Firmware_Click(object sender, EventArgs e) //Кнопка "Обновление прошивки"
         {
-            Frimware(PatchFirmwareKey, NewPatchFirmwareKey);
+            if (Uin != "---")
+            {
+                UpdateFirmware(PatchFirmwareKey, NewPatchFirmwareKey);
+            }
+            else
+            {
+                UpdateFirmware(PatchFirmware, NewPatchFirmware);
+            }
         }
-        private void FirmwareNotKey_Click(object sender, EventArgs e) //Кнопка "Прошивка без ключей"
-        {
-            Frimware(PatchFirmware, NewPatchFirmware);
-        }
-        private void Frimware(string Patch, string NewPatch) //Функция прошивки
+        private void UpdateFirmware(string Patch, string NewPatch) //Функция прошивки
         {
             if (File.Exists(Patch))
             {
@@ -201,7 +219,6 @@ namespace CustomizationRMKForm
                 Driver.FileName = NewPatch;
                 Driver.UpdateFirmware();
                 Firmware.Enabled = false;
-                FirmwareNotKey.Enabled = false;
                 UpdateFirmwareTimer.Start();
             }
             else
