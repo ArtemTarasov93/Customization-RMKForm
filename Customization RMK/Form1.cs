@@ -590,6 +590,9 @@ namespace CustomizationRMKForm
 
         private void AvansButton_Click(object sender, EventArgs e) //Кнопка "Добавить аванс"
         {
+            Driver.TableNumber = 5;
+            Driver.RowNumber = 14;
+            Driver.FieldNumber = 1;
             Driver.ValueOfFieldString = "ПРЕДВАРИТЕЛЬНАЯ ОПЛАТА (АВАНС)";
             Driver.WriteTable();
             Driver.RebootKKT();

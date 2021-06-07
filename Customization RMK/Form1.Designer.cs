@@ -220,7 +220,7 @@
             // 
             this.SettingConnection.BackColor = System.Drawing.Color.Transparent;
             this.SettingConnection.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.SettingConnection.Location = new System.Drawing.Point(180, 6);
+            this.SettingConnection.Location = new System.Drawing.Point(177, 6);
             this.SettingConnection.Name = "SettingConnection";
             this.SettingConnection.Size = new System.Drawing.Size(149, 23);
             this.SettingConnection.TabIndex = 18;
@@ -247,7 +247,7 @@
             this.TerminalResult.Location = new System.Drawing.Point(5, 303);
             this.TerminalResult.Multiline = true;
             this.TerminalResult.Name = "TerminalResult";
-            this.TerminalResult.Size = new System.Drawing.Size(326, 20);
+            this.TerminalResult.Size = new System.Drawing.Size(321, 20);
             this.TerminalResult.TabIndex = 16;
             // 
             // AdminPage
@@ -283,7 +283,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AdminResult.Location = new System.Drawing.Point(5, 303);
             this.AdminResult.Name = "AdminResult";
-            this.AdminResult.Size = new System.Drawing.Size(326, 20);
+            this.AdminResult.Size = new System.Drawing.Size(322, 20);
             this.AdminResult.TabIndex = 21;
             this.AdminResult.Text = "Здарова отец!";
             // 
@@ -343,7 +343,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(337, 354);
+            this.ClientSize = new System.Drawing.Size(338, 354);
             this.Controls.Add(this.TabControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
